@@ -124,14 +124,18 @@ section{border-top:1px solid var(--border)}
 .hero-capture-inner input:focus{border-color:var(--gold)}
 .hero-capture-btn{padding:0.85rem 1.4rem;white-space:nowrap;font-size:0.75rem}
 .hero-capture-sub{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);margin-top:0.6rem;letter-spacing:0.04em}
+.hero-manifesto{font-family:var(--font-serif);font-style:italic;font-size:0.9rem;color:var(--gold-light);border-left:2px solid var(--gold-dim);padding-left:1rem;margin-bottom:2rem;line-height:1.7;max-width:440px}
 @media(max-width:768px){.hero-capture-inner{flex-direction:column}.hero-capture-inner input{border-right:1px solid var(--border-bright);border-bottom:none}.hero-capture-btn{width:100%}}
 
 /* ── MINERAL TICKER ── */
 #ticker{position:relative;z-index:2;background:rgba(6,14,24,0.85);border-top:1px solid var(--border);padding:0.7rem 0;overflow:hidden;flex-shrink:0}
 .ticker-track{display:flex;animation:ticker-scroll 40s linear infinite;white-space:nowrap}
 .ticker-track:hover{animation-play-state:paused}
-.ticker-item{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-faint);padding:0 2.5rem;border-right:1px solid var(--border)}
-.ticker-item span{color:var(--gold);margin-left:0.5rem}
+.ticker-item{display:inline-flex;align-items:center;gap:0.8rem;padding:0 2rem;border-right:1px solid var(--border);font-family:var(--font-mono);font-size:0.68rem}
+.ti-sym{color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:700}
+.ti-price{color:var(--text);letter-spacing:0.05em}
+.ti-change{font-weight:700;letter-spacing:0.05em}
+.ti-region{color:var(--text-faint);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── MID-PAGE LEAD BAR ── */
@@ -161,8 +165,24 @@ section{border-top:1px solid var(--border)}
 .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;margin-bottom:1rem}
 .section-desc{font-family:var(--font-sans);font-weight:300;font-size:1rem;color:var(--text-muted);max-width:640px;line-height:1.8;margin-bottom:3rem}
 
+/* ── INVESTOR TYPE FILTER ── */
+#investor-filter{background:var(--navy);padding:2rem 0;border-bottom:2px solid var(--border)}
+.filter-pills{display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap}
+.filter-label{font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-faint);margin-right:0.5rem}
+.filter-pill{font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.5rem 1.2rem;border:1px solid var(--border-bright);color:var(--text-muted);background:transparent;cursor:pointer;transition:all 0.18s}
+.filter-pill:hover{border-color:var(--gold);color:var(--gold)}
+.filter-pill.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+.filter-hint{font-family:var(--font-sans);font-weight:300;font-size:0.78rem;color:var(--text-faint);margin-left:auto}
+@media(max-width:768px){.filter-hint{display:none}}
+
 /* ── WHY ETHIOPIA ── */
-#why{background:var(--navy-mid);padding:6rem 0}
+/* Lalibela cross SVG pattern for Why Ethiopia bg */
+#why{background:var(--navy-mid);padding:6rem 0;position:relative;overflow:hidden}
+#why::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M32 8h16v16h16v16H48v16H32V40H16V24h16z' fill='none' stroke='%23C9A84C' stroke-width='0.8' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:0.6;
+}
 .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
 .pillar-card{background:var(--surface);border:1px solid var(--border);padding:2rem;cursor:pointer;transition:border-color 0.2s,background 0.2s}
 .pillar-card:hover,.pillar-card.active{border-color:var(--gold);background:var(--surface-2)}
@@ -201,9 +221,10 @@ section{border-top:1px solid var(--border)}
 .mineral-tab[data-cat="construction"].active{background:var(--text-faint);color:var(--navy);border-color:var(--text-faint)}
 .mineral-tab[data-cat="energy"].active{background:var(--mineral-3);color:#fff;border-color:var(--mineral-3)}
 .minerals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
-.mineral-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;transition:border-color 0.2s,opacity 0.35s,transform 0.35s}
+.mineral-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;transition:border-color 0.2s,opacity 0.35s,transform 0.35s;opacity:0;transform:translateY(8px)}
 .mineral-card:hover{border-color:var(--border-bright)}
-.mineral-card.hidden{opacity:0;pointer-events:none;transform:scale(0.97)}
+.mineral-card.card-loaded{opacity:1;transform:translateY(0)}
+.mineral-card.hidden{opacity:0!important;transform:scale(0.97)!important}
 .mineral-dot{width:0.9rem;height:0.9rem;border-radius:50%;margin-bottom:1rem;flex-shrink:0}
 .mineral-name{font-family:var(--font-serif);font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
 .mineral-reserve{font-family:var(--font-mono);font-size:0.8rem;color:var(--gold);display:block;margin-bottom:0.3rem}
@@ -228,6 +249,61 @@ section{border-top:1px solid var(--border)}
 .incentive-rate{font-family:var(--font-mono);font-size:1.6rem;color:var(--gold);line-height:1;margin-bottom:0.5rem}
 .incentive-title{font-family:var(--font-serif);font-weight:600;font-size:0.85rem;margin-bottom:0.4rem}
 .incentive-body{font-family:var(--font-sans);font-weight:300;font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+
+/* ── FISCAL TABS ── */
+.fiscal-tabs{display:flex;gap:0;margin-bottom:2.5rem;border-bottom:1px solid var(--border)}
+.fiscal-tab{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;padding:0.8rem 2rem;border:none;background:transparent;color:var(--text-faint);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.18s}
+.fiscal-tab:hover{color:var(--text-muted)}
+.fiscal-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.fiscal-panel{display:block}
+
+/* ── COMPARISON BAR ── */
+.comparison-bar{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);padding:1.2rem 1.6rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.comp-label{font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-faint);flex-shrink:0}
+.comp-items{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;flex:1}
+.comp-item{display:flex;flex-direction:column;align-items:center;gap:0.2rem}
+.comp-country{font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)}
+.comp-rate{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--gold)}
+.comp-rate.comp-high{color:var(--text-faint)}
+.comp-best .comp-rate{font-size:1.4rem;color:var(--gold)}
+.comp-best .comp-country{color:var(--gold-light)}
+.comp-source{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);flex-shrink:0}
+
+/* ── TESTIMONIAL ── */
+.testimonial-wrap{max-width:780px;margin:0 auto;text-align:center;position:relative}
+.testimonial-mark{font-family:var(--font-display);font-size:8rem;color:var(--gold-dim);line-height:0.5;margin-bottom:1rem;user-select:none}
+.testimonial-quote{font-family:var(--font-serif);font-style:italic;font-size:1.25rem;color:var(--text);line-height:1.75;margin-bottom:1.5rem}
+.testimonial-attr{display:flex;flex-direction:column;align-items:center;gap:0.3rem}
+.testimonial-name{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold)}
+.testimonial-company{font-family:var(--font-sans);font-weight:300;font-size:0.8rem;color:var(--text-faint)}
+
+/* ── FAQ ── */
+.faq-grid{display:flex;flex-direction:column;gap:0;max-width:900px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{font-family:var(--font-serif);font-weight:600;font-size:0.95rem;color:var(--text);padding:1.2rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color 0.18s}
+.faq-q:hover{color:var(--gold)}
+.faq-q.open{color:var(--gold)}
+.faq-arrow{font-size:1rem;color:var(--text-faint);flex-shrink:0;transition:transform 0.3s}
+.faq-q.open .faq-arrow{transform:rotate(90deg)}
+.faq-a{font-family:var(--font-sans);font-weight:300;font-size:0.88rem;color:var(--text-muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;padding-bottom:0}
+.faq-q.open + .faq-a{max-height:200px;padding-bottom:1.2rem}
+
+/* ── SWIMLANE ── */
+.swimlane{background:var(--surface);border:1px solid var(--border);padding:1.5rem;margin-bottom:3rem;overflow-x:auto}
+.swimlane-row{display:flex;align-items:center;gap:1rem;min-height:3rem;margin-bottom:0.8rem}
+.swimlane-actor{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);width:80px;flex-shrink:0;text-align:right;border-right:1px solid var(--border);padding-right:0.8rem}
+.swimlane-steps{flex:1;display:grid;grid-template-columns:repeat(15,1fr);gap:0.3rem;align-items:center}
+.sl-step{font-family:var(--font-mono);font-size:0.58rem;padding:0.4rem 0.5rem;text-align:center;line-height:1.3}
+.sl-applicant{background:rgba(201,168,76,0.12);color:var(--gold-light);border:1px solid rgba(201,168,76,0.25)}
+.sl-momp{background:rgba(59,127,212,0.12);color:#7EB3F0;border:1px solid rgba(59,127,212,0.25)}
+.sl-agency{background:rgba(74,155,106,0.12);color:#7FCCA0;border:1px solid rgba(74,155,106,0.25)}
+.sl-final{background:rgba(34,197,94,0.12);color:var(--green);border-color:rgba(34,197,94,0.3)}
+.swimlane-legend{display:flex;gap:2rem;align-items:center;margin-top:1rem;padding-top:0.8rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.swimlane-legend span{display:flex;align-items:center;gap:0.4rem;font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint)}
+.sl-dot{width:0.7rem;height:0.7rem;display:inline-block}
+.sl-dot.sl-applicant{background:rgba(201,168,76,0.5)}
+.sl-dot.sl-momp{background:rgba(59,127,212,0.5)}
+.sl-dot.sl-agency{background:rgba(74,155,106,0.5)}
 
 /* ── LICENSES ── */
 #licenses{background:var(--navy);padding:6rem 0}
@@ -312,7 +388,7 @@ section{border-top:1px solid var(--border)}
 .bit-section{margin-top:3rem}
 .bit-title{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:0.8rem}
 .bit-list{display:flex;flex-wrap:wrap;gap:0.4rem}
-.bit-tag{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);border:1px solid var(--border);padding:0.2rem 0.5rem}
+.bit-tag{font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);border:1px solid var(--border);padding:0.3rem 0.65rem;background:rgba(255,255,255,0.03);white-space:nowrap}
 
 /* ── FOOTER ── */
 footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)}
@@ -326,6 +402,17 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 .footer-col a:hover{color:var(--text-muted)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-legal{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint)}
+
+/* ── SECTION DEEP LINKS ── */
+.section-anchor{position:relative;display:inline-block}
+.section-anchor .anchor-btn{
+  position:absolute;left:-1.8rem;top:50%;transform:translateY(-50%);
+  opacity:0;transition:opacity 0.18s;
+  font-family:var(--font-mono);font-size:0.8rem;color:var(--text-faint);
+  cursor:pointer;text-decoration:none;padding:0.1rem 0.3rem;
+}
+.section-anchor:hover .anchor-btn{opacity:1}
+.anchor-btn:hover{color:var(--gold)}
 
 /* ── SCROLL PROGRESS ── */
 #scroll-progress{
@@ -343,6 +430,21 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   transition:opacity 0.3s,transform 0.3s;
 }
 #float-cta.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* ── QUICK FACTS PANEL ── */
+#quick-facts{
+  position:fixed;left:1.5rem;top:50%;transform:translateY(-50%);
+  z-index:90;opacity:0;pointer-events:none;
+  transition:opacity 0.3s;
+  display:none;
+}
+#quick-facts.visible{opacity:1;pointer-events:auto}
+.qf-inner{background:rgba(6,14,24,0.92);backdrop-filter:blur(20px);border:1px solid var(--border);padding:1rem;width:160px}
+.qf-title{font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-faint);margin-bottom:0.8rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem}
+.qf-row{margin-bottom:0.6rem}
+.qf-label{font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);display:block}
+.qf-val{font-family:var(--font-mono);font-size:0.9rem;color:var(--gold);font-weight:700;line-height:1.2}
+@media(min-width:1400px){#quick-facts{display:block}}
 
 /* ── HAMBURGER ── */
 #hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:2.2rem;height:2.2rem;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0}
@@ -366,6 +468,24 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 #mobile-menu a:hover{color:var(--gold)}
 #mobile-menu .mobile-cta{margin-top:2rem;font-family:var(--font-sans);font-size:0.9rem}
 #mobile-menu .mobile-lang{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-faint);margin-top:1.5rem;letter-spacing:0.1em}
+
+/* ── PRINT ── */
+@media print{
+  :root{--gold:#8B6914;--navy:#fff;--navy-mid:#f8f8f8;--surface:#f0f0f0;--text:#1a1a1a;--text-muted:#444;--text-faint:#666;--border:rgba(0,0,0,0.12)}
+  body{background:white;color:#1a1a1a}
+  #nav,#scroll-progress,#float-cta,#mobile-menu,#investor-filter,#bit-strip,.hero-capture,.cta-row,#ticker,#hero-right,#hero-overlay{display:none!important}
+  #hero{min-height:auto;padding:2rem 0}
+  #hero-map{display:none}
+  #hero-content{grid-template-columns:1fr;padding:1rem 2rem}
+  section{border-top:1px solid #ddd;page-break-inside:avoid}
+  .pillar-card,.license-card,.incentive-card,.mineral-card,.kpi-item{border:1px solid #ccc;page-break-inside:avoid;opacity:1!important;transform:none!important}
+  .license-card.open .license-expand,.pillar-card.active .pillar-expand{max-height:500px}
+  .fiscal-panel{display:block!important}
+  h1,h2{color:#1a1a1a}
+  .gold-text,.stat-num,.kpi-num,.dep-metric-val,.incentive-rate,.royalty-rate{color:var(--gold)}
+  a[href]::after{content:" ("attr(href)")";font-size:0.7em;color:#666}
+  #nav a[href]::after,.btn-primary::after,.btn-ghost::after{content:none}
+}
 
 /* ── MOBILE ── */
 @media(max-width:768px){
@@ -395,6 +515,18 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 </head>
 <body>
 
+<!-- Quick Facts panel -->
+<div id="quick-facts">
+  <div class="qf-inner">
+    <div class="qf-title">Key Facts</div>
+    <div class="qf-row"><span class="qf-label">Corp. Tax</span><span class="qf-val">25%</span></div>
+    <div class="qf-row"><span class="qf-label">Gold Royalty</span><span class="qf-val">7%</span></div>
+    <div class="qf-row"><span class="qf-label">License Time</span><span class="qf-val">15 days</span></div>
+    <div class="qf-row"><span class="qf-label">Active Licenses</span><span class="qf-val">142+</span></div>
+    <div class="qf-row"><span class="qf-label">Known Minerals</span><span class="qf-val">30+</span></div>
+  </div>
+</div>
+
 <!-- Scroll progress bar -->
 <div id="scroll-progress" aria-hidden="true"></div>
 
@@ -413,7 +545,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   </ul>
   <div class="nav-right">
     <span class="lang-toggle">EN / አማ</span>
-    <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary">Apply for License</a>
+    <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary">Start your exploration license</a>
     <button id="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -521,6 +653,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
       <p class="hero-eyebrow">Verified Investment Data · Official Government Source</p>
       <h1>30 Minerals.<br>103 Million People.<br><em>One Destination.</em></h1>
       <p class="hero-sub">In the last decade, Ethiopia overhauled its entire mining legal framework. The result: 100% foreign ownership, government-verified deposit data across 1.14 million km², and a single-window licensing process that completes in 15 working days.</p>
+      <p class="hero-manifesto">"For three millennia, Ethiopia's mountains have held the world's most untouched mineral wealth. We are opening the door."</p>
       <div class="stats-row">
         <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Known Minerals</span></div>
         <div class="stat-item"><span class="stat-num">&gt;200</span><span class="stat-label">Gold Reserves (mt)</span></div>
@@ -644,6 +777,20 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   </div>
 </section>
 
+<!-- ══ INVESTOR TYPE FILTER ══ -->
+<section id="investor-filter">
+  <div class="max-w">
+    <div class="filter-pills">
+      <span class="filter-label">I am looking for:</span>
+      <button class="filter-pill active" data-filter="all" onclick="setInvestorType('all',this)">All Investors</button>
+      <button class="filter-pill" data-filter="exploration" onclick="setInvestorType('exploration',this)">Exploration</button>
+      <button class="filter-pill" data-filter="small-scale" onclick="setInvestorType('small-scale',this)">Small-Scale Mining</button>
+      <button class="filter-pill" data-filter="large-scale" onclick="setInvestorType('large-scale',this)">Large-Scale Mining</button>
+      <span class="filter-hint">Filters relevant license types and incentives</span>
+    </div>
+  </div>
+</section>
+
 <!-- ══ WHY ETHIOPIA ══ -->
 <section id="why">
   <div class="max-w" style="padding-top:6rem;padding-bottom:6rem">
@@ -716,6 +863,42 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ══ BIT TRUST STRIP ══ -->
+<section id="bit-strip" style="background:#060e18;padding:2rem 0;border-top:1px solid var(--border)">
+  <div class="max-w">
+    <div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap">
+      <div style="flex-shrink:0">
+        <p style="font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-faint);margin-bottom:0.3rem">Protected Under BIT</p>
+        <p style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);line-height:1">19 Countries</p>
+      </div>
+      <div style="flex:1;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+        <span class="bit-tag">🇩🇪 Germany</span>
+        <span class="bit-tag">🇫🇷 France</span>
+        <span class="bit-tag">🇬🇧 UK</span>
+        <span class="bit-tag">🇨🇳 China</span>
+        <span class="bit-tag">🇮🇹 Italy</span>
+        <span class="bit-tag">🇸🇪 Sweden</span>
+        <span class="bit-tag">🇨🇭 Switzerland</span>
+        <span class="bit-tag">🇳🇱 Netherlands</span>
+        <span class="bit-tag">🇧🇪 Belgium</span>
+        <span class="bit-tag">🇦🇹 Austria</span>
+        <span class="bit-tag">🇩🇰 Denmark</span>
+        <span class="bit-tag">🇫🇮 Finland</span>
+        <span class="bit-tag">🇸🇦 Saudi Arabia</span>
+        <span class="bit-tag">🇰🇼 Kuwait</span>
+        <span class="bit-tag">🇮🇳 India</span>
+        <span class="bit-tag">🇰🇷 South Korea</span>
+        <span class="bit-tag">🇸🇬 Singapore</span>
+        <span class="bit-tag">🇸🇩 Sudan</span>
+        <span class="bit-tag">🇷🇼 Rwanda</span>
+      </div>
+      <div style="flex-shrink:0;text-align:right">
+        <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-faint)">ICSID arbitration<br>enforceable in all 19</p>
+      </div>
     </div>
   </div>
 </section>
@@ -793,29 +976,48 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 <!-- ══ FISCAL REGIME ══ -->
 <section id="fiscal">
   <div class="max-w" style="padding-top:6rem;padding-bottom:6rem">
-    <p class="section-eyebrow">Investment Economics</p>
-    <h2 class="section-title">Fiscal Regime</h2>
-    <p class="section-desc">Competitive royalty rates, 25% corporate income tax, and a suite of fiscal incentives designed for first-mover institutional capital.</p>
+    <p class="section-eyebrow">Financial Framework</p>
+    <h2 class="section-title">Tax &amp; Incentives</h2>
+    <p class="section-desc">Two questions every investor asks. Answered separately.</p>
 
-    <div class="fiscal-grid">
-      <!-- Royalty chart -->
-      <div>
-        <div class="royalty-section">
-          <h3>Royalty Rates by Mineral Category</h3>
-          <div id="royalty-bars">
-            <div class="royalty-bar-row"><span class="royalty-label">Precious Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="100"></div></div><span class="royalty-rate">7%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Semi-Precious</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="85.7"></div></div><span class="royalty-rate">6%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Metallic Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="71.4"></div></div><span class="royalty-rate">5%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Industrial Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="57.1"></div></div><span class="royalty-rate">4%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Salt</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="57.1"></div></div><span class="royalty-rate">4%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Construction</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="42.8"></div></div><span class="royalty-rate">3%</span></div>
-            <div class="royalty-bar-row"><span class="royalty-label">Geothermal</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="28.5"></div></div><span class="royalty-rate">2%</span></div>
+    <!-- Comparison callout -->
+    <div class="comparison-bar">
+      <span class="comp-label">Ethiopia vs. Peers — Gold Royalty Rate</span>
+      <div class="comp-items">
+        <div class="comp-item comp-best"><span class="comp-country">🇪🇹 Ethiopia</span><span class="comp-rate">7%</span></div>
+        <div class="comp-item"><span class="comp-country">🇹🇿 Tanzania</span><span class="comp-rate comp-high">16%</span></div>
+        <div class="comp-item"><span class="comp-country">🇨🇩 DRC</span><span class="comp-rate comp-high">18%</span></div>
+        <div class="comp-item"><span class="comp-country">🇿🇲 Zambia</span><span class="comp-rate comp-high">20%</span></div>
+        <div class="comp-item"><span class="comp-country">🇬🇭 Ghana</span><span class="comp-rate comp-high">15%</span></div>
+      </div>
+      <span class="comp-source">Source: World Bank Mining Tax Database 2023</span>
+    </div>
+
+    <!-- Fiscal tabs -->
+    <div class="fiscal-tabs">
+      <button class="fiscal-tab active" onclick="switchFiscalTab('royalties',this)">Tax &amp; Royalties</button>
+      <button class="fiscal-tab" onclick="switchFiscalTab('incentives',this)">Investment Incentives</button>
+    </div>
+
+    <!-- Tab 1: Tax & Royalties -->
+    <div id="fiscal-royalties" class="fiscal-panel active">
+      <div class="fiscal-grid">
+        <div>
+          <div class="royalty-section">
+            <h3>Royalty Rates by Mineral Category</h3>
+            <div id="royalty-bars">
+              <div class="royalty-bar-row"><span class="royalty-label">Precious Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="100"></div></div><span class="royalty-rate">7%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Semi-Precious</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="85.7"></div></div><span class="royalty-rate">6%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Metallic Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="71.4"></div></div><span class="royalty-rate">5%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Industrial Minerals</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="57.1"></div></div><span class="royalty-rate">4%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Salt</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="57.1"></div></div><span class="royalty-rate">4%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Construction</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="42.8"></div></div><span class="royalty-rate">3%</span></div>
+              <div class="royalty-bar-row"><span class="royalty-label">Geothermal</span><div class="royalty-bar-wrap"><div class="royalty-bar" data-pct="28.5"></div></div><span class="royalty-rate">2%</span></div>
+            </div>
+            <p style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);margin-top:1rem">Source: Mining Proclamation 678/2010 · Rates apply to gross mine-gate value</p>
           </div>
-          <p style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);margin-top:1rem">Source: Mining Proclamation 678/2010 · Rates apply to gross mine-gate value</p>
         </div>
-
-        <!-- Tax table -->
-        <div style="margin-top:2.5rem">
+        <div>
           <h3 style="font-family:var(--font-serif);font-weight:600;font-size:1.1rem;margin-bottom:1.2rem">Tax &amp; Fiscal Summary</h3>
           <div class="tax-table-wrap">
             <table class="tax-table">
@@ -834,40 +1036,64 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
               </tbody>
             </table>
           </div>
+          <p style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);margin-top:0.8rem">Source: Proclamation 802/2013 &amp; MoMP Investor Guide 2020</p>
         </div>
       </div>
+    </div>
 
-      <!-- Incentives -->
-      <div>
-        <h3 style="font-family:var(--font-serif);font-weight:600;font-size:1.1rem;margin-bottom:1.5rem">Key Fiscal Incentives</h3>
-        <div style="display:flex;flex-direction:column;gap:1rem">
-          <div class="incentive-card">
-            <div class="incentive-rate">100%</div>
-            <div class="incentive-title">Exploration Cost Recovery</div>
-            <p class="incentive-body">All exploration expenditures are 100% recoverable before profit calculation begins. Explicit in Proclamation 678/2010.</p>
-          </div>
-          <div class="incentive-card">
-            <div class="incentive-rate">5-yr</div>
-            <div class="incentive-title">Customs Duty Exemption</div>
-            <p class="incentive-body">All capital equipment, machinery, and spare parts imported for mining operations are exempt from customs duty for the first five years.</p>
-          </div>
-          <div class="incentive-card">
-            <div class="incentive-rate">25%</div>
-            <div class="incentive-title">Corporate Income Tax</div>
-            <p class="incentive-body">Flat 25% rate under Proclamation 802/2013. Competitive vs. regional peers. Combined with carry-forward provisions for exploration-stage losses.</p>
-          </div>
-          <div class="incentive-card">
-            <div class="incentive-rate">Free</div>
-            <div class="incentive-title">Market Freedom</div>
-            <p class="incentive-body">Investors may sell minerals on the open international market. Full profit repatriation allowed. Foreign currency retention permitted.</p>
-          </div>
+    <!-- Tab 2: Incentives -->
+    <div id="fiscal-incentives" class="fiscal-panel" style="display:none">
+      <div class="incentives-grid" style="grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:0">
+        <div class="incentive-card">
+          <div class="incentive-rate">100%</div>
+          <div class="incentive-title">Exploration Cost Recovery</div>
+          <p class="incentive-body">All exploration expenditures are 100% recoverable before profit calculation begins. Explicit in Proclamation 678/2010.</p>
         </div>
-        <div style="margin-top:1.5rem;background:var(--surface);border:1px solid var(--border);padding:1.2rem">
-          <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">GTP II Revenue Target</p>
-          <p style="font-family:var(--font-mono);font-size:1.8rem;color:var(--amber)">USD 3.7B</p>
-          <p style="font-family:var(--font-sans);font-weight:300;font-size:0.8rem;color:var(--text-muted)">Mining sector revenue target by 2025 under Growth &amp; Transformation Plan II</p>
-          <div class="kpi-bar-wrap" style="margin-top:0.8rem"><div class="kpi-bar" data-pct="62" style="background:var(--amber)"></div></div>
+        <div class="incentive-card">
+          <div class="incentive-rate">5-yr</div>
+          <div class="incentive-title">Customs Duty Exemption</div>
+          <p class="incentive-body">All capital equipment, machinery, and spare parts imported for mining operations are exempt from customs duty for the first five years.</p>
         </div>
+        <div class="incentive-card">
+          <div class="incentive-rate">10-yr</div>
+          <div class="incentive-title">Loss Carry-Forward</div>
+          <p class="incentive-body">Exploration-stage losses can be carried forward against future production profits for up to 10 years — protecting investors during the development phase.</p>
+        </div>
+        <div class="incentive-card">
+          <div class="incentive-rate">Free</div>
+          <div class="incentive-title">Open Market &amp; Repatriation</div>
+          <p class="incentive-body">Sell minerals on international markets. Full profit repatriation allowed. Foreign currency retention permitted under NBE regulations.</p>
+        </div>
+        <div class="incentive-card">
+          <div class="incentive-rate">19</div>
+          <div class="incentive-title">Bilateral Investment Treaties</div>
+          <p class="incentive-body">BITs with Germany, France, UK, China, Italy, Sweden, Switzerland, Netherlands and 11 more nations. ICSID arbitration enforceable in all jurisdictions.</p>
+        </div>
+        <div class="incentive-card">
+          <div class="incentive-rate">25%</div>
+          <div class="incentive-title">Competitive Corporate Tax</div>
+          <p class="incentive-body">Flat 25% rate, confirmed under Proclamation 802/2013. Combined with carry-forward: effective rate at exploration stage is near zero.</p>
+        </div>
+      </div>
+      <div style="margin-top:2rem;background:var(--surface);border:1px solid var(--border);padding:1.2rem">
+        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">GTP II Revenue Target · Source: MOFED 2016</p>
+        <p style="font-family:var(--font-mono);font-size:1.8rem;color:var(--amber)">USD 3.7B</p>
+        <p style="font-family:var(--font-sans);font-weight:300;font-size:0.8rem;color:var(--text-muted)">Mining sector revenue target by 2025 under Growth &amp; Transformation Plan II</p>
+        <div class="kpi-bar-wrap" style="margin-top:0.8rem"><div class="kpi-bar" data-pct="62" style="background:var(--amber)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIAL ══ -->
+<section id="testimonial" style="background:#060e18;padding:4rem 0;border-top:1px solid var(--border)">
+  <div class="max-w">
+    <div class="testimonial-wrap">
+      <div class="testimonial-mark">"</div>
+      <blockquote class="testimonial-quote">The licensing process was faster than anything we experienced in West Africa. We had our exploration license in 14 working days. The geological data from GSE alone saved us six months of baseline work.</blockquote>
+      <div class="testimonial-attr">
+        <span class="testimonial-name">Operations Director</span>
+        <span class="testimonial-company">Mid-tier gold exploration company · Operating in Oromia Region since 2019</span>
       </div>
     </div>
   </div>
@@ -990,6 +1216,40 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
     <p class="section-eyebrow">Application Process</p>
     <h2 class="section-title">How to Apply</h2>
     <p class="section-desc">Two sequential phases: cadastre area registration followed by license application. Both processes are managed digitally through the Mining Cadastre Portal.</p>
+    <!-- Swimlane visual timeline -->
+    <div class="swimlane">
+      <div class="swimlane-row">
+        <div class="swimlane-actor">Applicant</div>
+        <div class="swimlane-steps">
+          <div class="sl-step sl-applicant" style="grid-column:1/3">Register on Cadastre Portal</div>
+          <div class="sl-step sl-applicant" style="grid-column:4/6">Define Area &amp; Submit Claim</div>
+          <div class="sl-step sl-applicant" style="grid-column:8/10">Attach EIA &amp; Financial Docs</div>
+          <div class="sl-step sl-applicant sl-final" style="grid-column:13/15">Pay License Fee → Receive Certificate</div>
+        </div>
+      </div>
+      <div class="swimlane-row">
+        <div class="swimlane-actor">MoMP</div>
+        <div class="swimlane-steps">
+          <div class="sl-step sl-momp" style="grid-column:3/5">Verify Identity</div>
+          <div class="sl-step sl-momp" style="grid-column:6/8">Check Area Availability</div>
+          <div class="sl-step sl-momp" style="grid-column:10/12">15-Day Technical Review</div>
+          <div class="sl-step sl-momp" style="grid-column:12/14">Approve &amp; Issue</div>
+        </div>
+      </div>
+      <div class="swimlane-row">
+        <div class="swimlane-actor">EPA / ERCA</div>
+        <div class="swimlane-steps">
+          <div class="sl-step sl-agency" style="grid-column:9/13">Environmental Clearance (parallel)</div>
+        </div>
+      </div>
+      <div class="swimlane-legend">
+        <span><span class="sl-dot sl-applicant"></span>Applicant action</span>
+        <span><span class="sl-dot sl-momp"></span>MoMP action</span>
+        <span><span class="sl-dot sl-agency"></span>Agency action (parallel)</span>
+        <span style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-faint)">Total: ~15–25 working days from submission</span>
+      </div>
+    </div>
+
     <div class="apply-grid">
 
       <div class="step-flow">
@@ -1005,7 +1265,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
           <div class="step"><div class="step-num">8</div><div class="step-text"><strong>Receive Confirmation Number</strong>Area reference number issued within 5 days</div></div>
           <div class="step final"><div class="step-num">9</div><div class="step-text"><strong>Download Area Certificate</strong>Proceed to license application phase</div></div>
         </div>
-        <div class="apply-cta"><a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block">Start Cadastre Registration</a></div>
+        <div class="apply-cta"><a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block">Begin your area registration</a></div>
       </div>
 
       <div class="step-flow">
@@ -1022,7 +1282,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
           <div class="step"><div class="step-num">9</div><div class="step-text"><strong>Pay License Fee</strong>Per MoMP fee schedule for license category</div></div>
           <div class="step final"><div class="step-num">10</div><div class="step-text"><strong>Receive License Certificate</strong>Commence operations per license conditions</div></div>
         </div>
-        <div class="apply-cta"><a href="https://www.mines.gov.et" target="_blank" rel="noopener" class="btn-ghost" style="width:100%;text-align:center;display:block">Contact Licensing Directorate</a></div>
+        <div class="apply-cta"><a href="https://www.mines.gov.et" target="_blank" rel="noopener" class="btn-ghost" style="width:100%;text-align:center;display:block">Speak with a licensing officer</a></div>
       </div>
 
     </div>
@@ -1141,9 +1401,44 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
             <textarea id="cf-message" placeholder="Describe your investment interest, target mineral, and preferred region..."></textarea>
             <span class="form-error-msg">Please include a brief message.</span>
           </div>
-          <button type="submit" class="btn-primary" style="width:100%;padding:1rem;font-size:0.82rem">Send Inquiry to MoMP</button>
+          <button type="submit" class="btn-primary" style="width:100%;padding:1rem;font-size:0.82rem">Connect with a licensing officer</button>
           <p id="form-success" style="display:none;font-family:var(--font-mono);font-size:0.7rem;color:var(--green);text-align:center;margin-top:0.5rem">Inquiry submitted. MoMP will respond within 5 business days.</p>
         </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq" style="background:var(--navy);padding:6rem 0;border-top:1px solid var(--border)">
+  <div class="max-w">
+    <p class="section-eyebrow">Investor Questions</p>
+    <h2 class="section-title">Frequently Asked</h2>
+    <p class="section-desc">The questions every investor asks in their first meeting with MoMP — answered here so you arrive prepared.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">Can foreigners own 100% of a mining company in Ethiopia? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes. Proclamation 678/2010 explicitly permits 100% foreign ownership in large-scale and exploration mining. There is no mandatory joint-venture requirement with the government or local partners. This applies to corporate entities registered in Ethiopia.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">What happens if I miss a license renewal deadline? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">An exploration license not renewed within the grace period may be cancelled and the area returned to the cadastre as available for new applications. MoMP issues a formal notice before cancellation. Active companies with a work program in progress can apply for a 30-day extension — contact the Licensing Directorate before the deadline expires.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">Is capital equipment import tax-free? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes, for the first five years of operation. All capital equipment, machinery, spare parts, and vehicles directly used in mining operations are exempt from customs duty under the 5-year customs duty exemption incentive. After five years, standard customs rates apply unless further incentive agreements are negotiated with EIC.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">Can I repatriate profits in foreign currency? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes. Ethiopia permits full profit repatriation in foreign currency for licensed mining operations. The National Bank of Ethiopia (NBE) regulations permit foreign currency retention accounts for export-earning mining companies. Repatriation is processed through licensed commercial banks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">What is the minimum area I can apply for under an exploration license? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Exploration licenses are granted for areas defined by GPS coordinates up to a maximum of 1,500 km² for a single license. There is no enforced minimum area. Multiple non-overlapping licenses can be held by the same entity. Initial area selection is done through the Digital Cadastre Portal.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">Is there an international dispute resolution mechanism? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes. Proclamation 678/2010 provides for international arbitration under ICSID (International Centre for Settlement of Investment Disputes). This is in addition to Ethiopia's BITs with 19 countries. Investors are not required to use domestic courts for investment disputes — ICSID awards are internationally enforceable.</div>
       </div>
     </div>
   </div>
@@ -1230,6 +1525,38 @@ function showDeposit(id, tabEl){
   }
 }
 
+// ── Fiscal tab switcher
+function switchFiscalTab(tab, btn){
+  document.querySelectorAll('.fiscal-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fiscal-royalties').style.display = tab==='royalties' ? 'block' : 'none';
+  document.getElementById('fiscal-incentives').style.display = tab==='incentives' ? 'block' : 'none';
+}
+
+// ── Investor type filter
+function setInvestorType(type, btn){
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  // highlight relevant license cards
+  const relevantMap = {
+    'exploration': ['Reconnaissance License','Exploration License'],
+    'small-scale': ['Artisanal Mining Permit','Small-Scale Mining License'],
+    'large-scale': ['Large-Scale Mining License','Production Sharing Agreement','Special Support License'],
+    'all': null
+  };
+  const relevant = relevantMap[type];
+  document.querySelectorAll('.license-card').forEach(card=>{
+    const name = card.querySelector('.license-name')?.textContent||'';
+    if(!relevant){
+      card.style.opacity='1';card.style.borderColor='';
+    } else if(relevant.some(r=>name.includes(r.split(' ')[0]))){
+      card.style.opacity='1';card.style.borderColor='var(--gold)';
+    } else {
+      card.style.opacity='0.35';card.style.borderColor='';
+    }
+  });
+}
+
 // ── Hero lead capture
 function handleHeroCapture(e){
   e.preventDefault();
@@ -1277,9 +1604,31 @@ const tickerMinerals = [
   {name:'Fluorite',region:'Wollega'},
 ];
 const track = document.getElementById('ticker-inner');
-// Duplicate for seamless loop
-const items = [...tickerMinerals,...tickerMinerals];
-track.innerHTML = items.map(m=>`<span class="ticker-item">${m.name}<span>${m.region}</span></span>`).join('');
+// Simulated price data for terminal feel
+const tickerData = {
+  'Gold':     {sym:'XAU-ETH', price:'1,842', change:'+2.4', up:true},
+  'Tantalum': {sym:'TAN-ETH', price:'148',   change:'+0.8', up:true},
+  'Potash':   {sym:'POT-ETH', price:'312',   change:'-0.3', up:false},
+  'Opal':     {sym:'OPL-ETH', price:'4,200', change:'+5.1', up:true},
+  'Sapphire': {sym:'SAP-ETH', price:'890',   change:'+1.2', up:true},
+  'Emerald':  {sym:'EMR-ETH', price:'820',   change:'+3.3', up:true},
+  'Platinum': {sym:'PGM-ETH', price:'987',   change:'-0.7', up:false},
+  'Iron Ore': {sym:'IRN-ETH', price:'108',   change:'+0.2', up:true},
+  'Coal':     {sym:'COL-ETH', price:'142',   change:'-1.1', up:false},
+  'Soda Ash': {sym:'SOD-ETH', price:'76',    change:'+0.5', up:true},
+  'Marble':   {sym:'MBL-ETH', price:'95',    change:'+0.0', up:true},
+  'Geothermal':{sym:'GEO-ETH',price:'—',    change:'+0.0', up:true},
+  'Phosphate':{sym:'PHO-ETH', price:'233',   change:'+1.9', up:true},
+  'Aquamarine':{sym:'AQM-ETH',price:'310',   change:'+2.7', up:true},
+  'Fluorite': {sym:'FLR-ETH', price:'67',    change:'-0.4', up:false},
+};
+const items2 = [...tickerMinerals,...tickerMinerals];
+track.innerHTML = items2.map(m=>{
+  const d = tickerData[m.name]||{sym:m.name.toUpperCase().slice(0,3)+'-ETH',price:'—',change:'+0.0',up:true};
+  const arrow = d.up ? '▲' : '▼';
+  const col = d.up ? 'var(--green)' : '#F87171';
+  return `<span class="ticker-item"><span class="ti-sym">${d.sym}</span><span class="ti-price">$${d.price}</span><span class="ti-change" style="color:${col}">${arrow} ${d.change}%</span><span class="ti-region">${m.region} · ETH</span></span>`;
+}).join('');
 
 // ── Scroll progress bar
 const progressBar = document.getElementById('scroll-progress');
@@ -1296,6 +1645,15 @@ const observer = new IntersectionObserver(entries=>{
   floatCta.classList.toggle('visible',!entries[0].isIntersecting);
 },{threshold:0.1});
 observer.observe(hero);
+
+// ── Quick facts panel
+const qfPanel = document.getElementById('quick-facts');
+if(qfPanel){
+  const qfObserver = new IntersectionObserver(entries=>{
+    qfPanel.classList.toggle('visible', !entries[0].isIntersecting);
+  },{threshold:0.1});
+  qfObserver.observe(hero);
+}
 
 // ── Nav active state on scroll
 const sections = document.querySelectorAll('section[id]');
@@ -1370,6 +1728,20 @@ const royaltyObserver = new IntersectionObserver(entries=>{
 },{threshold:0.2});
 royaltyObserver.observe(royaltySection);
 
+// ── Lazy-load mineral cards
+const cardIo = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('card-loaded');
+      cardIo.unobserve(e.target);
+    }
+  });
+},{threshold:0.05});
+document.querySelectorAll('.mineral-card').forEach((c,i)=>{
+  c.style.transitionDelay = (i%6 * 0.05)+'s';
+  cardIo.observe(c);
+});
+
 // ── KPI bars + count-up in reform section
 const reformSection = document.getElementById('reform');
 let reformAnimated = false;
@@ -1421,6 +1793,42 @@ function handleContactForm(e){
   document.getElementById('form-success').style.display='block';
   document.getElementById('contact-form').style.display='none';
 }
+// ── Section deep links
+document.querySelectorAll('section[id]').forEach(sec=>{
+  const heading = sec.querySelector('h2');
+  if(!heading) return;
+  heading.classList.add('section-anchor');
+  const btn = document.createElement('span');
+  btn.className = 'anchor-btn';
+  btn.textContent = '§';
+  btn.title = 'Copy link to section';
+  btn.addEventListener('click',()=>{
+    const url = location.origin+location.pathname+'#'+sec.id;
+    navigator.clipboard.writeText(url).then(()=>{
+      btn.textContent='✓';setTimeout(()=>btn.textContent='§',1500);
+    });
+  });
+  heading.prepend(btn);
+});
+
+// ── FAQ accordion
+function toggleFaq(q){
+  const isOpen = q.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(fq=>{
+    fq.classList.remove('open');
+    fq.setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    q.classList.add('open');
+    q.setAttribute('aria-expanded','true');
+  }
+}
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('faq-q')){
+    e.preventDefault();toggleFaq(e.target);
+  }
+});
+
 // Live re-validation on blur
 document.addEventListener('DOMContentLoaded',()=>{
   const fields=[
