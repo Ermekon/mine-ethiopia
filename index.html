@@ -113,7 +113,7 @@ section{border-top:1px solid var(--border)}
 #hero-content .hero-sub{font-family:var(--font-sans);font-weight:300;font-size:1rem;color:var(--text-muted);max-width:460px;line-height:1.8;margin-bottom:2rem}
 .stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2rem;margin:2.5rem 0}
 .stat-item{display:flex;flex-direction:column;border-left:2px solid var(--gold-dim);padding-left:1rem}
-.stat-num{font-family:var(--font-mono);font-size:clamp(3.2rem,6vw,6.5rem);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:-0.03em}
+.stat-num{font-family:var(--font-mono);font-size:clamp(4.5rem,8vw,7.5rem);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:-0.03em}
 .stat-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-top:0.4rem}
 .stat-source{font-family:var(--font-mono);font-size:0.5rem;color:var(--text-faint);opacity:0.55;margin-top:0.15rem;letter-spacing:0.04em}
 .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
@@ -306,6 +306,33 @@ section{border-top:1px solid var(--border)}
 .sl-dot.sl-applicant{background:rgba(201,168,76,0.5)}
 .sl-dot.sl-momp{background:rgba(59,127,212,0.5)}
 .sl-dot.sl-agency{background:rgba(74,155,106,0.5)}
+
+/* ── INTERACTIVE DEPOSIT MAP ── */
+.map-wrapper{position:relative;display:grid;grid-template-columns:1fr 380px;min-height:560px;margin-top:2rem}
+.map-svg-wrap{background:#060e18;border:1px solid var(--border);overflow:hidden}
+.map-svg-wrap svg{width:100%;height:100%;min-height:500px;display:block}
+.map-detail-panel{background:rgba(6,14,24,0.97);border:1px solid var(--border-bright);border-left:none;padding:2rem;overflow-y:auto;transform:translateX(0);transition:opacity 0.3s;opacity:0;pointer-events:none}
+.map-detail-panel.open{opacity:1;pointer-events:auto}
+.map-panel-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-faint);font-size:1.1rem;cursor:pointer;line-height:1;padding:0.2rem}
+.map-panel-close:hover{color:var(--text)}
+.panel-eyebrow{font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-faint);margin-bottom:0.6rem}
+.panel-mineral-name{font-family:var(--font-display);font-size:1.8rem;font-weight:700;line-height:1.1;margin-bottom:0.2rem}
+.panel-location{font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:1.4rem}
+.panel-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.4rem}
+.panel-metric{background:rgba(255,255,255,0.04);padding:0.8rem}
+.panel-metric-label{font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-bottom:0.3rem}
+.panel-metric-val{font-family:var(--font-mono);font-size:1rem;font-weight:700;line-height:1}
+.panel-section-title{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-faint);margin-bottom:0.5rem;margin-top:1.2rem;border-top:1px solid var(--border);padding-top:0.8rem}
+.panel-operator{font-family:var(--font-sans);font-weight:300;font-size:0.82rem;color:var(--text-muted);padding:0.3rem 0;border-bottom:1px solid var(--border)}
+.panel-port{font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem}
+.panel-status{display:inline-block;font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.25rem 0.6rem;border:1px solid;margin-bottom:1rem}
+.status-active{background:rgba(34,197,94,0.12);color:#22C55E;border-color:rgba(34,197,94,0.3)}
+.status-partial{background:rgba(232,134,26,0.12);color:#E8861A;border-color:rgba(232,134,26,0.3)}
+.status-open{background:rgba(59,127,212,0.12);color:#3B7FD4;border-color:rgba(59,127,212,0.3)}
+.panel-cta{font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:0.1rem;display:inline-block;margin-top:1.2rem;transition:color 0.2s,border-color 0.2s}
+.panel-cta:hover{color:var(--gold-light);border-color:var(--gold)}
+@media(max-width:1024px){.map-wrapper{grid-template-columns:1fr}.map-detail-panel{border-left:1px solid var(--border-bright);border-top:none}}
+@media(max-width:768px){.map-wrapper{grid-template-columns:1fr}.map-detail-panel.open{position:fixed;bottom:0;left:0;right:0;z-index:98;border:none;border-top:1px solid var(--border-bright);max-height:55vh;padding:1.2rem}}
 
 /* ── LICENSES ── */
 #licenses{background:var(--navy);padding:6rem 0}
@@ -509,7 +536,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 @media print{
   :root{--gold:#8B6914;--navy:#fff;--navy-mid:#f8f8f8;--surface:#f0f0f0;--text:#1a1a1a;--text-muted:#444;--text-faint:#666;--border:rgba(0,0,0,0.12)}
   body{background:white;color:#1a1a1a}
-  #nav,#scroll-progress,#float-cta,#mobile-menu,#investor-filter,#bit-strip,.hero-capture,.cta-row,#ticker,#hero-right,#hero-overlay{display:none!important}
+  #nav,#scroll-progress,#float-cta,#mobile-menu,#investor-filter,#bit-strip,.hero-capture,.cta-row,#ticker,#hero-right,#hero-overlay,#deposit-map,#footnotes{display:none!important}
   #hero{min-height:auto;padding:2rem 0}
   #hero-map{display:none}
   #hero-content{grid-template-columns:1fr;padding:1rem 2rem}
@@ -532,7 +559,7 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   #hero-content{grid-template-columns:1fr;padding:5rem 1.5rem 2rem}
   #hero-right{display:none}
   .stats-row{grid-template-columns:repeat(2,1fr);gap:1rem}
-  .stat-num{font-size:clamp(2.2rem,10vw,3.5rem)}
+  .stat-num{font-size:clamp(2.8rem,12vw,4.5rem)}
   .pillars-grid{grid-template-columns:1fr 1fr}
   .minerals-grid{grid-template-columns:1fr 1fr}
   .fiscal-grid,.reform-grid,.apply-grid,.contact-grid{grid-template-columns:1fr}
@@ -813,6 +840,42 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   </div>
 </section>
 
+<!-- ══ BIT TRUST STRIP ══ -->
+<section id="bit-strip" style="background:#060e18;padding:2rem 0;border-top:1px solid var(--border)">
+  <div class="max-w">
+    <div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap">
+      <div style="flex-shrink:0">
+        <p style="font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-faint);margin-bottom:0.3rem">Protected investment in</p>
+        <p style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);line-height:1">19 Countries</p>
+      </div>
+      <div style="flex:1;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+        <span class="bit-tag">🇩🇪 Germany</span>
+        <span class="bit-tag">🇫🇷 France</span>
+        <span class="bit-tag">🇬🇧 UK</span>
+        <span class="bit-tag">🇨🇳 China</span>
+        <span class="bit-tag">🇮🇹 Italy</span>
+        <span class="bit-tag">🇸🇪 Sweden</span>
+        <span class="bit-tag">🇨🇭 Switzerland</span>
+        <span class="bit-tag">🇳🇱 Netherlands</span>
+        <span class="bit-tag">🇧🇪 Belgium</span>
+        <span class="bit-tag">🇦🇹 Austria</span>
+        <span class="bit-tag">🇩🇰 Denmark</span>
+        <span class="bit-tag">🇫🇮 Finland</span>
+        <span class="bit-tag">🇸🇦 Saudi Arabia</span>
+        <span class="bit-tag">🇰🇼 Kuwait</span>
+        <span class="bit-tag">🇮🇳 India</span>
+        <span class="bit-tag">🇰🇷 South Korea</span>
+        <span class="bit-tag">🇸🇬 Singapore</span>
+        <span class="bit-tag">🇸🇩 Sudan</span>
+        <span class="bit-tag">🇷🇼 Rwanda</span>
+      </div>
+      <div style="flex-shrink:0;text-align:right">
+        <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-faint)">ICSID arbitration<br>enforceable in all 19</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ INVESTOR TYPE FILTER ══ -->
 <section id="investor-filter">
   <div class="max-w">
@@ -903,42 +966,6 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   </div>
 </section>
 
-<!-- ══ BIT TRUST STRIP ══ -->
-<section id="bit-strip" style="background:#060e18;padding:2rem 0;border-top:1px solid var(--border)">
-  <div class="max-w">
-    <div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap">
-      <div style="flex-shrink:0">
-        <p style="font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-faint);margin-bottom:0.3rem">Protected Under BIT</p>
-        <p style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);line-height:1">19 Countries</p>
-      </div>
-      <div style="flex:1;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
-        <span class="bit-tag">🇩🇪 Germany</span>
-        <span class="bit-tag">🇫🇷 France</span>
-        <span class="bit-tag">🇬🇧 UK</span>
-        <span class="bit-tag">🇨🇳 China</span>
-        <span class="bit-tag">🇮🇹 Italy</span>
-        <span class="bit-tag">🇸🇪 Sweden</span>
-        <span class="bit-tag">🇨🇭 Switzerland</span>
-        <span class="bit-tag">🇳🇱 Netherlands</span>
-        <span class="bit-tag">🇧🇪 Belgium</span>
-        <span class="bit-tag">🇦🇹 Austria</span>
-        <span class="bit-tag">🇩🇰 Denmark</span>
-        <span class="bit-tag">🇫🇮 Finland</span>
-        <span class="bit-tag">🇸🇦 Saudi Arabia</span>
-        <span class="bit-tag">🇰🇼 Kuwait</span>
-        <span class="bit-tag">🇮🇳 India</span>
-        <span class="bit-tag">🇰🇷 South Korea</span>
-        <span class="bit-tag">🇸🇬 Singapore</span>
-        <span class="bit-tag">🇸🇩 Sudan</span>
-        <span class="bit-tag">🇷🇼 Rwanda</span>
-      </div>
-      <div style="flex-shrink:0;text-align:right">
-        <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-faint)">ICSID arbitration<br>enforceable in all 19</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ MID-PAGE LEAD CAPTURE ══ -->
 <section id="lead-bar" style="background:#060e18;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="max-w" style="padding-top:4rem;padding-bottom:4rem">
@@ -1005,6 +1032,137 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
       <!-- Energy -->
       <div class="mineral-card" data-category="energy"><div class="mineral-dot" style="background:#888888"></div><div class="mineral-name">Coal</div><span class="mineral-reserve">Industrial potential</span><span class="mineral-region">Moye · Delbi · SNNP</span></div>
       <div class="mineral-card" data-category="energy"><div class="mineral-dot" style="background:#FF8844"></div><div class="mineral-name">Geothermal</div><span class="mineral-reserve">10,000 MW potential</span><span class="mineral-region">Afar Rift · Rift Valley</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTERACTIVE DEPOSIT MAP ══ -->
+<section id="deposit-map" style="background:var(--navy-mid);padding:6rem 0">
+  <div class="max-w">
+    <p class="section-eyebrow">Verified Deposit Intelligence</p>
+    <h2 class="section-title">Ethiopia Mineral Map</h2>
+    <p class="section-desc">Nine confirmed commercial deposits. Click any pin to see reserve data, active operators, royalty rate, and nearest export port.</p>
+  </div>
+
+  <div class="map-wrapper">
+    <!-- SVG Map -->
+    <div class="map-svg-wrap">
+      <svg id="deposit-map-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            @keyframes map-pulse{0%,100%{transform:scale(1);opacity:0.85}50%{transform:scale(2.4);opacity:0.1}}
+            .mp-gold{animation:map-pulse 2s infinite;animation-delay:0s;transform-origin:580px 430px}
+            .mp-tan{animation:map-pulse 2s infinite;animation-delay:0.3s;transform-origin:590px 448px}
+            .mp-pot{animation:map-pulse 2.2s infinite;animation-delay:0.6s;transform-origin:700px 178px}
+            .mp-opal{animation:map-pulse 2s infinite;animation-delay:0.9s;transform-origin:522px 262px}
+            .mp-sap{animation:map-pulse 2.1s infinite;animation-delay:1.2s;transform-origin:500px 155px}
+            .mp-eme{animation:map-pulse 2s infinite;animation-delay:0.15s;transform-origin:556px 425px}
+            .mp-plat{animation:map-pulse 2.3s infinite;animation-delay:0.45s;transform-origin:452px 342px}
+            .mp-iron{animation:map-pulse 2s infinite;animation-delay:0.75s;transform-origin:432px 336px}
+            .mp-coal{animation:map-pulse 1.9s infinite;animation-delay:1.05s;transform-origin:432px 382px}
+            .map-pin{cursor:pointer;transition:transform 0.2s}
+            .map-pin:hover .pin-dot{filter:brightness(1.4)}
+            .map-pin.active .pin-dot{filter:brightness(1.5)}
+          </style>
+          <pattern id="mapgrid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="800" fill="#060e18"/>
+        <rect width="1200" height="800" fill="url(#mapgrid)"/>
+        <!-- Ethiopia outline -->
+        <path d="M380 120 L440 100 L540 105 L620 95 L680 110 L740 130 L790 165 L830 200 L860 240 L875 280 L870 320 L850 355 L820 385 L780 415 L720 445 L660 470 L600 490 L560 510 L530 525 L500 510 L460 480 L420 445 L385 405 L360 365 L340 325 L330 280 L335 240 L345 195 L360 155 Z"
+              fill="rgba(26,58,80,0.7)" stroke="#1A4A5A" stroke-width="1.5"/>
+        <!-- Internal geography lines -->
+        <path d="M400 200 Q 500 220 580 280 Q 640 330 700 300 Q 760 270 800 320" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+        <path d="M450 350 Q 530 370 600 400 Q 660 420 720 380" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+
+        <!-- Gold (Adola) -->
+        <g class="map-pin" data-mineral="gold" onclick="selectDeposit('gold',this)">
+          <circle cx="580" cy="430" r="18" fill="#C9A84C" opacity="0.15" class="mp-gold"/>
+          <circle cx="580" cy="430" r="8" fill="#C9A84C" opacity="0.95" class="pin-dot"/>
+          <text x="592" y="425" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(201,168,76,0.8)">ADOLA GOLD</text>
+        </g>
+        <!-- Tantalum (Kenticha) -->
+        <g class="map-pin" data-mineral="tantalum" onclick="selectDeposit('tantalum',this)">
+          <circle cx="590" cy="448" r="14" fill="#3B7FD4" opacity="0.15" class="mp-tan"/>
+          <circle cx="590" cy="448" r="6" fill="#3B7FD4" opacity="0.95" class="pin-dot"/>
+          <text x="602" y="456" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(59,127,212,0.8)">KENTICHA</text>
+        </g>
+        <!-- Potash (Dallol) -->
+        <g class="map-pin" data-mineral="potash" onclick="selectDeposit('potash',this)">
+          <circle cx="700" cy="178" r="20" fill="#E8861A" opacity="0.18" class="mp-pot"/>
+          <circle cx="700" cy="178" r="10" fill="#E8861A" opacity="0.95" class="pin-dot"/>
+          <text x="715" y="173" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(232,134,26,0.9)">DALLOL POTASH</text>
+        </g>
+        <!-- Opal (Wollo) -->
+        <g class="map-pin" data-mineral="opal" onclick="selectDeposit('opal',this)">
+          <circle cx="522" cy="262" r="15" fill="#38B8CC" opacity="0.15" class="mp-opal"/>
+          <circle cx="522" cy="262" r="7" fill="#38B8CC" opacity="0.95" class="pin-dot"/>
+          <text x="534" y="257" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(56,184,204,0.8)">WOLLO OPAL</text>
+        </g>
+        <!-- Sapphire (Tigray) -->
+        <g class="map-pin" data-mineral="sapphire" onclick="selectDeposit('sapphire',this)">
+          <circle cx="500" cy="155" r="14" fill="#5090E8" opacity="0.15" class="mp-sap"/>
+          <circle cx="500" cy="155" r="7" fill="#5090E8" opacity="0.95" class="pin-dot"/>
+          <text x="512" y="150" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(80,144,232,0.8)">TIGRAY SAPPHIRE</text>
+        </g>
+        <!-- Emerald (Shakiso) -->
+        <g class="map-pin" data-mineral="emerald" onclick="selectDeposit('emerald',this)">
+          <circle cx="556" cy="425" r="13" fill="#20C050" opacity="0.15" class="mp-eme"/>
+          <circle cx="556" cy="425" r="6" fill="#20C050" opacity="0.95" class="pin-dot"/>
+          <text x="520" y="443" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(32,192,80,0.8)">SHAKISO EMR.</text>
+        </g>
+        <!-- Platinum (Yubdo) -->
+        <g class="map-pin" data-mineral="platinum" onclick="selectDeposit('platinum',this)">
+          <circle cx="452" cy="342" r="13" fill="#AAAACC" opacity="0.12" class="mp-plat"/>
+          <circle cx="452" cy="342" r="6" fill="#AAAACC" opacity="0.9" class="pin-dot"/>
+          <text x="460" y="332" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(170,170,204,0.7)">YUBDO PGM</text>
+        </g>
+        <!-- Iron Ore (Bikilal) -->
+        <g class="map-pin" data-mineral="iron" onclick="selectDeposit('iron',this)">
+          <circle cx="432" cy="336" r="13" fill="#CC8844" opacity="0.12" class="mp-iron"/>
+          <circle cx="432" cy="336" r="6" fill="#CC8844" opacity="0.9" class="pin-dot"/>
+          <text x="394" y="326" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(204,136,68,0.7)">BIKILAL IRON</text>
+        </g>
+        <!-- Coal (Moye) -->
+        <g class="map-pin" data-mineral="coal" onclick="selectDeposit('coal',this)">
+          <circle cx="432" cy="382" r="12" fill="#888888" opacity="0.1" class="mp-coal"/>
+          <circle cx="432" cy="382" r="6" fill="#888888" opacity="0.85" class="pin-dot"/>
+          <text x="390" y="396" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(136,136,136,0.7)">MOYE COAL</text>
+        </g>
+
+        <!-- Default instruction overlay -->
+        <g id="map-default-msg">
+          <rect x="840" y="50" width="320" height="60" fill="rgba(6,14,24,0.8)" stroke="rgba(255,255,255,0.08)" stroke-width="1" rx="2"/>
+          <text x="860" y="76" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#4A6878">SELECT A DEPOSIT PIN</text>
+          <text x="860" y="92" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#2A4858">Click any gold dot to view deposit data</text>
+        </g>
+
+        <!-- Compass -->
+        <g transform="translate(50,680)">
+          <circle cx="15" cy="15" r="14" fill="rgba(6,14,24,0.6)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="15" y="10" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4A6878">N</text>
+          <line x1="15" y1="12" x2="15" y2="4" stroke="#C9A84C" stroke-width="1.5"/>
+          <line x1="15" y1="18" x2="15" y2="26" stroke="#4A6878" stroke-width="1"/>
+        </g>
+
+        <!-- Scale bar -->
+        <g transform="translate(50,740)">
+          <line x1="0" y1="5" x2="100" y2="5" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="0" y1="2" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="100" y1="2" x2="100" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="50" y="18" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4A6878">500 km</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Detail Panel (hidden by default, shown on pin click) -->
+    <div class="map-detail-panel" id="map-detail-panel">
+      <button class="map-panel-close" onclick="closeDepositPanel()" aria-label="Close deposit panel">✕</button>
+      <div id="panel-content">
+        <!-- Populated by JS -->
+      </div>
     </div>
   </div>
 </section>
@@ -1487,6 +1645,20 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
     </div>
   </div>
 </section>
+
+<!-- ══ FOOTNOTES ══ -->
+<div id="footnotes" style="background:#060e18;border-top:1px solid var(--border);padding:1.5rem 0">
+  <div class="max-w">
+    <div style="display:flex;flex-wrap:wrap;gap:1.5rem 3rem">
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>1</sup> Source: Geological Survey of Ethiopia (GSE), Mineral Data Catalogue, 2019</p>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>2</sup> Source: Ministry of Mines &amp; Petroleum, Investor Guide, 2020</p>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>3</sup> Source: Federal Negarit Gazette, Proclamation 802/2013</p>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>4</sup> Source: Federal Negarit Gazette, Proclamation 678/2010</p>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>5</sup> Source: World Bank Ethiopia Country Report, 2021</p>
+      <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--text-faint);line-height:1.7"><sup>6</sup> Source: World Bank Mining Tax Database, 2023</p>
+    </div>
+  </div>
+</div>
 
 <!-- ══ FOOTER ══ -->
 <footer>
@@ -1987,6 +2159,186 @@ document.querySelectorAll('.filter-pill').forEach(pill=>{
     else{sl.style.borderColor=''}
   });
 });
+
+// ── Interactive Mineral Deposit Map
+const depositData = {
+  gold: {
+    name:'Adola Gold Belt',color:'#C9A84C',
+    location:'Oromia Region · 05°53\'N 39°06\'E',
+    type:'Precious Metal',status:'active',
+    metrics:[
+      {label:'Confirmed Reserve',val:'>200 mt'},
+      {label:'Royalty Rate',val:'7%'},
+      {label:'License Duration',val:'15 yrs'},
+      {label:'Exploration Depth',val:'<500m avg'},
+    ],
+    operators:['MIDROC Gold Mining (Lege Dembi)','Kefi Gold & Copper plc (Tulu Kapi)','Multiple artisanal licensees'],
+    port:'Djibouti Port — 800 km · Est. 3 days by road',
+    note:'Source: MoMP Investor Guide 2020 · GSE Mineral Data Catalogue 2019',
+  },
+  tantalum: {
+    name:'Kenticha Tantalum',color:'#3B7FD4',
+    location:'Oromia Region · 05°40\'N 38°45\'E',
+    type:'Strategic Metal',status:'partial',
+    metrics:[
+      {label:'Global Rank',val:'#6'},
+      {label:'Royalty Rate',val:'5%'},
+      {label:'License Duration',val:'15 yrs'},
+      {label:'Annual Output',val:'~150 t/yr'},
+    ],
+    operators:['Metals & Engineering Corp (METEC)','Partial concessions open to co-development'],
+    port:'Djibouti Port — 850 km',
+    note:'Source: GSE 2019 · World Bank Ethiopia 2021',
+  },
+  potash: {
+    name:'Dallol Potash Basin',color:'#E8861A',
+    location:'Afar Region · 14°14\'N 40°18\'E',
+    type:'Industrial Mineral',status:'open',
+    metrics:[
+      {label:'Deposit Estimate',val:'3.2 Bt'},
+      {label:'Royalty Rate',val:'4%'},
+      {label:'License Duration',val:'20 yrs'},
+      {label:'Grade',val:'20–30% K₂O'},
+    ],
+    operators:['Yara International (exploration history)','Allana Potash Corp (Danakhil)','Open to institutional bids'],
+    port:'Djibouti Port — 400 km · Strategic proximity',
+    note:'Source: MoMP Guide 2020 · Allana Potash technical report 2014',
+  },
+  opal: {
+    name:'Wollo Opal Fields',color:'#38B8CC',
+    location:'Amhara Region · 11°20\'N 39°33\'E',
+    type:'Precious Gemstone',status:'active',
+    metrics:[
+      {label:'Top Auction Price',val:'$15k/ct'},
+      {label:'Royalty Rate',val:'7%'},
+      {label:'License Duration',val:'10 yrs'},
+      {label:'Quality',val:'Play-of-colour'},
+    ],
+    operators:['Multiple ASM licence holders','Licensed gemstone exporters (MoMP-registered)'],
+    port:'Djibouti Port — 700 km · Djibouti Free Zone',
+    note:'Source: MoMP Gemstone Division 2020 · GIA grading reports',
+  },
+  sapphire: {
+    name:'Tigray Sapphire Zone',color:'#5090E8',
+    location:'Tigray Region · 13°30\'N 38°20\'E',
+    type:'Precious Gemstone',status:'partial',
+    metrics:[
+      {label:'Avg. Gem Price',val:'$400/ct'},
+      {label:'Royalty Rate',val:'6%'},
+      {label:'License Duration',val:'10 yrs'},
+      {label:'Quality',val:'GIA certified'},
+    ],
+    operators:['Artisanal operators (pre-2020)','Partial — current access subject to regional conditions'],
+    port:'Alt. route: Djibouti Port — 900 km',
+    note:'Source: GSE Gemstone Survey 2018',
+  },
+  emerald: {
+    name:'Shakiso Emerald Zone',color:'#20C050',
+    location:'Oromia Region · 05°45\'N 38°58\'E',
+    type:'Precious Gemstone',status:'active',
+    metrics:[
+      {label:'Avg. Market Price',val:'$800/ct'},
+      {label:'Royalty Rate',val:'7%'},
+      {label:'License Duration',val:'10 yrs'},
+      {label:'Comparable Origin',val:'Colombia -35%'},
+    ],
+    operators:['Licensed ASM operators','Road access from Shakiso town (12 km) · Grid power available'],
+    port:'Djibouti Port — 820 km',
+    note:'Source: MoMP Gemstone Division · GIA origin certificates 2021',
+  },
+  platinum: {
+    name:'Yubdo Platinum Group',color:'#AAAACC',
+    location:'Oromia Region · 08°30\'N 35°35\'E',
+    type:'Precious Metal',status:'open',
+    metrics:[
+      {label:'Mineral Type',val:'PGM+Chrome'},
+      {label:'Royalty Rate',val:'7%'},
+      {label:'License Duration',val:'15 yrs'},
+      {label:'Belt Length',val:'~40 km'},
+    ],
+    operators:['Historical government production (1950s–1980s)','Currently open — no active licensees'],
+    port:'Djibouti Port — 900 km',
+    note:'Source: GSE Mineral Data Catalogue 2019',
+  },
+  iron: {
+    name:'Bikilal Iron Ore',color:'#CC8844',
+    location:'Benishangul-Gumuz · 10°12\'N 35°30\'E',
+    type:'Industrial Metal',status:'open',
+    metrics:[
+      {label:'Reserve Estimate',val:'>300 Mt'},
+      {label:'Royalty Rate',val:'5%'},
+      {label:'License Duration',val:'15 yrs'},
+      {label:'Fe Grade',val:'45–60%'},
+    ],
+    operators:['Open to first-mover application','Infrastructure: Abbay River corridor under development'],
+    port:'Djibouti Port — 850 km · Future rail corridor planned',
+    note:'Source: GSE 2019 · MOFED infrastructure master plan',
+  },
+  coal: {
+    name:'Moye Coal Basin',color:'#888888',
+    location:'SNNPR · 07°10\'N 36°10\'E',
+    type:'Energy Mineral',status:'open',
+    metrics:[
+      {label:'Reserve Estimate',val:'~6 Bt'},
+      {label:'Royalty Rate',val:'4%'},
+      {label:'License Duration',val:'20 yrs'},
+      {label:'Calorific Value',val:'5,200 kcal/kg'},
+    ],
+    operators:['Open — no current production licensees','Proximity to Addis–Jimma road corridor'],
+    port:'Djibouti Port — 900 km',
+    note:'Source: MoMP Investor Guide 2020 · GSE coal survey 2016',
+  },
+};
+
+let activeDeposit = null;
+
+function selectDeposit(mineral, pinEl){
+  const d = depositData[mineral];
+  if(!d) return;
+
+  // Reset previous active pin
+  document.querySelectorAll('.map-pin').forEach(p=>p.classList.remove('active'));
+  if(activeDeposit === mineral){
+    closeDepositPanel();
+    return;
+  }
+  activeDeposit = mineral;
+  pinEl.classList.add('active');
+
+  // Hide default instruction
+  const defMsg = document.getElementById('map-default-msg');
+  if(defMsg) defMsg.style.display='none';
+
+  // Build panel HTML
+  const statusClass = d.status==='active'?'status-active':d.status==='partial'?'status-partial':'status-open';
+  const statusLabel = d.status==='active'?'Active Production':d.status==='partial'?'Partial / Development':'Open for Licensing';
+
+  const html = `
+    <div class="panel-eyebrow">${d.type} · Ethiopia</div>
+    <div class="panel-mineral-name" style="color:${d.color}">${d.name}</div>
+    <div class="panel-location">${d.location}</div>
+    <span class="panel-status ${statusClass}">${statusLabel}</span>
+    <div class="panel-metrics">
+      ${d.metrics.map(m=>`<div class="panel-metric"><div class="panel-metric-label">${m.label}</div><div class="panel-metric-val" style="color:${d.color}">${m.val}</div></div>`).join('')}
+    </div>
+    <div class="panel-section-title">Active Operators</div>
+    ${d.operators.map(op=>`<div class="panel-operator">${op}</div>`).join('')}
+    <div class="panel-section-title">Export Logistics</div>
+    <div class="panel-port">🚢 ${d.port}</div>
+    <a href="#licenses" class="panel-cta">View license requirements →</a>
+    <p style="font-family:var(--font-mono);font-size:0.52rem;color:var(--text-faint);margin-top:1.2rem;line-height:1.5;opacity:0.65">${d.note}</p>
+  `;
+  document.getElementById('panel-content').innerHTML = html;
+  document.getElementById('map-detail-panel').classList.add('open');
+}
+
+function closeDepositPanel(){
+  document.getElementById('map-detail-panel').classList.remove('open');
+  document.querySelectorAll('.map-pin').forEach(p=>p.classList.remove('active'));
+  const defMsg = document.getElementById('map-default-msg');
+  if(defMsg) defMsg.style.display='block';
+  activeDeposit = null;
+}
 </script>
 </body>
 </html>
