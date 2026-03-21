@@ -77,10 +77,10 @@ section{border-top:1px solid var(--border)}
 #hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,14,24,0.96) 0%,rgba(6,14,24,0.82) 45%,rgba(6,14,24,0.5) 70%,rgba(6,14,24,0.15) 100%);z-index:1}
 #hero-content{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:0 5rem;padding-top:6rem;max-width:1440px;width:100%;margin:0 auto}
 #hero-left{}
-#hero-right{display:flex;flex-direction:column;gap:1rem}
+#hero-right{display:flex;flex-direction:column;gap:16px;min-width:0;overflow:hidden}
 
 /* ── DEPOSIT PANEL ── */
-.deposit-panel{background:rgba(6,14,24,0.72);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(20px);padding:1.6rem}
+.deposit-panel{background:rgba(6,14,24,0.72);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(20px);padding:1.6rem;min-width:0;width:100%;overflow:hidden}
 .deposit-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
 .deposit-panel-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-faint)}
 .deposit-active-badge{font-family:var(--font-mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.12em;padding:0.2rem 0.55rem;background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.25)}
@@ -101,7 +101,7 @@ section{border-top:1px solid var(--border)}
 .dep-cta:hover{color:var(--gold-light);border-color:var(--gold)}
 
 /* ── MAP LEGEND MINI ── */
-.map-legend-mini{display:flex;gap:1rem;flex-wrap:wrap;background:rgba(6,14,24,0.65);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.07);padding:0.9rem 1.1rem}
+.map-legend-mini{display:flex;gap:1rem;flex-wrap:wrap;background:rgba(6,14,24,0.65);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.07);padding:0.9rem 1.1rem;min-width:0;width:100%;overflow:hidden}
 .ml-item{display:flex;align-items:center;gap:0.45rem;cursor:pointer;transition:opacity 0.18s}
 .ml-item:hover{opacity:0.75}
 .ml-dot{width:0.6rem;height:0.6rem;border-radius:50%;flex-shrink:0}
