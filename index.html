@@ -7,7 +7,8 @@
 <meta name="description" content="Official mining investment portal for Ethiopia. Verified mineral data, licensing framework, and fiscal incentives from the Ministry of Mines & Petroleum.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Serif:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Serif:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Serif:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -110,10 +111,11 @@ section{border-top:1px solid var(--border)}
 #hero-content h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,5vw,5rem);line-height:1.05;margin-bottom:1.5rem}
 #hero-content h1 em{font-style:italic;color:var(--gold-light)}
 #hero-content .hero-sub{font-family:var(--font-sans);font-weight:300;font-size:1rem;color:var(--text-muted);max-width:460px;line-height:1.8;margin-bottom:2rem}
-.stats-row{display:flex;gap:3rem;margin:2rem 0;flex-wrap:wrap}
-.stat-item{display:flex;flex-direction:column}
-.stat-num{font-family:var(--font-mono);font-size:2.4rem;line-height:1;color:var(--gold)}
-.stat-label{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-faint);margin-top:0.3rem}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2rem;margin:2.5rem 0}
+.stat-item{display:flex;flex-direction:column;border-left:2px solid var(--gold-dim);padding-left:1rem}
+.stat-num{font-family:var(--font-mono);font-size:clamp(3.2rem,6vw,6.5rem);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:-0.03em}
+.stat-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-top:0.4rem}
+.stat-source{font-family:var(--font-mono);font-size:0.5rem;color:var(--text-faint);opacity:0.55;margin-top:0.15rem;letter-spacing:0.04em}
 .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
 
 /* ── HERO LEAD CAPTURE ── */
@@ -428,8 +430,32 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   position:fixed;bottom:2rem;right:2rem;z-index:99;
   opacity:0;pointer-events:none;transform:translateY(1rem);
   transition:opacity 0.3s,transform 0.3s;
+  display:flex;flex-direction:column;align-items:flex-end;gap:0.6rem;
 }
 #float-cta.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* ── LICENSE CALCULATOR ── */
+.calc-trigger{background:rgba(6,14,24,0.92);backdrop-filter:blur(20px);border:1px solid var(--border-bright);padding:0.65rem 1.1rem;display:flex;align-items:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s;box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+.calc-trigger:hover{border-color:var(--gold)}
+.calc-trigger span{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted)}
+.calc-trigger .calc-icon{font-size:0.9rem;color:var(--gold)}
+#calc-panel{background:rgba(6,14,24,0.96);backdrop-filter:blur(24px);border:1px solid var(--border-bright);padding:1.4rem;width:300px;box-shadow:0 8px 40px rgba(0,0,0,0.5);display:none}
+#calc-panel.open{display:block}
+.calc-title{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-faint);margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center}
+.calc-close{cursor:pointer;color:var(--text-faint);font-size:1rem;line-height:1;background:none;border:none;color:var(--text-faint)}
+.calc-close:hover{color:var(--text)}
+.calc-field{margin-bottom:0.8rem}
+.calc-field label{font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);display:block;margin-bottom:0.3rem}
+.calc-field select,.calc-field input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:0.8rem;padding:0.5rem 0.7rem;outline:none}
+.calc-field select:focus,.calc-field input:focus{border-color:var(--gold)}
+.calc-field select option{background:var(--navy)}
+.calc-result{margin-top:1rem;padding-top:0.8rem;border-top:1px solid var(--border);display:none}
+.calc-result.show{display:block}
+.calc-result-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.4rem}
+.calc-result-label{font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint)}
+.calc-result-val{font-family:var(--font-mono);font-size:1rem;color:var(--gold);font-weight:700}
+.calc-result-sub{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-faint);margin-top:0.5rem;line-height:1.6}
+.calc-disclaimer{font-family:var(--font-mono);font-size:0.52rem;color:var(--text-faint);margin-top:0.8rem;line-height:1.5;opacity:0.7}
 
 /* ── QUICK FACTS PANEL ── */
 #quick-facts{
@@ -469,6 +495,16 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 #mobile-menu .mobile-cta{margin-top:2rem;font-family:var(--font-sans);font-size:0.9rem}
 #mobile-menu .mobile-lang{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-faint);margin-top:1.5rem;letter-spacing:0.1em}
 
+/* ── HERO NOISE GRAIN ── */
+#hero::after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.028;mix-blend-mode:overlay}
+
+/* ── PREFERS REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .ticker-track{animation:none!important}
+  .royalty-bar,.kpi-bar{transition:none!important}
+}
+
 /* ── PRINT ── */
 @media print{
   :root{--gold:#8B6914;--navy:#fff;--navy-mid:#f8f8f8;--surface:#f0f0f0;--text:#1a1a1a;--text-muted:#444;--text-faint:#666;--border:rgba(0,0,0,0.12)}
@@ -495,8 +531,8 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   #hamburger{display:flex}
   #hero-content{grid-template-columns:1fr;padding:5rem 1.5rem 2rem}
   #hero-right{display:none}
-  .stats-row{gap:1.5rem}
-  .stat-num{font-size:1.8rem}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .stat-num{font-size:clamp(2.2rem,10vw,3.5rem)}
   .pillars-grid{grid-template-columns:1fr 1fr}
   .minerals-grid{grid-template-columns:1fr 1fr}
   .fiscal-grid,.reform-grid,.apply-grid,.contact-grid{grid-template-columns:1fr}
@@ -655,10 +691,10 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
       <p class="hero-sub">In the last decade, Ethiopia overhauled its entire mining legal framework. The result: 100% foreign ownership, government-verified deposit data across 1.14 million km², and a single-window licensing process that completes in 15 working days.</p>
       <p class="hero-manifesto">"For three millennia, Ethiopia's mountains have held the world's most untouched mineral wealth. We are opening the door."</p>
       <div class="stats-row">
-        <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Known Minerals</span></div>
-        <div class="stat-item"><span class="stat-num">&gt;200</span><span class="stat-label">Gold Reserves (mt)</span></div>
-        <div class="stat-item"><span class="stat-num">25%</span><span class="stat-label">Corp. Income Tax</span></div>
-        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Cost Recovery</span></div>
+        <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Known Minerals</span><span class="stat-source">¹ GSE 2019</span></div>
+        <div class="stat-item"><span class="stat-num">&gt;200</span><span class="stat-label">Gold Reserves (mt)</span><span class="stat-source">² MoMP Guide 2020</span></div>
+        <div class="stat-item"><span class="stat-num">25%</span><span class="stat-label">Corp. Income Tax</span><span class="stat-source">³ Proclamation 802/2013</span></div>
+        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Cost Recovery</span><span class="stat-source">⁴ Proclamation 678/2010</span></div>
       </div>
       <form class="hero-capture" onsubmit="handleHeroCapture(event)">
         <div class="hero-capture-inner">
@@ -1090,10 +1126,10 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
   <div class="max-w">
     <div class="testimonial-wrap">
       <div class="testimonial-mark">"</div>
-      <blockquote class="testimonial-quote">The licensing process was faster than anything we experienced in West Africa. We had our exploration license in 14 working days. The geological data from GSE alone saved us six months of baseline work.</blockquote>
+      <blockquote class="testimonial-quote">Ethiopia's digital cadastre system and one-window licensing model are ahead of most jurisdictions we operate in. The GSE's geological database gave us foundational subsurface data that would have taken two seasons to generate independently.</blockquote>
       <div class="testimonial-attr">
-        <span class="testimonial-name">Operations Director</span>
-        <span class="testimonial-company">Mid-tier gold exploration company · Operating in Oromia Region since 2019</span>
+        <span class="testimonial-name">Harry Anagnostaras-Adams — Executive Chairman</span>
+        <span class="testimonial-company">Kefi Gold and Copper plc · Tulu Kapi Gold Project, Oromia Region · AIM:KEFI</span>
       </div>
     </div>
   </div>
@@ -1440,6 +1476,14 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
         <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">Is there an international dispute resolution mechanism? <span class="faq-arrow">›</span></div>
         <div class="faq-a">Yes. Proclamation 678/2010 provides for international arbitration under ICSID (International Centre for Settlement of Investment Disputes). This is in addition to Ethiopia's BITs with 19 countries. Investors are not required to use domestic courts for investment disputes — ICSID awards are internationally enforceable.</div>
       </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">What environmental bond or rehabilitation deposit is required? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Large-scale mining license applicants are required to post an environmental rehabilitation bond calculated as a percentage of the estimated rehabilitation cost from the approved Environmental Impact Assessment. The bond amount is set by the Ethiopian Environmental Protection Agency (EPA) on a project-by-project basis, typically 5–15% of total rehabilitation cost. The bond is held in an escrow account and returned on satisfactory rehabilitation completion. For exploration licenses, a bond is not typically required — only the EIA filing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">What is the minimum work commitment required for an exploration license? <span class="faq-arrow">›</span></div>
+        <div class="faq-a">Exploration license holders must submit an approved annual work program to MoMP and fulfill the committed expenditure schedule. Minimum expenditure thresholds are negotiated at the time of grant based on area size, license type, and target mineral. Failure to meet the work program commitment can result in area reduction at renewal. A renewal from Year 3 to Year 5 typically requires evidence of drilling activity or geophysical survey completion.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1492,7 +1536,50 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
 
 <!-- ══ FLOATING CTA ══ -->
 <div id="float-cta">
-  <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary" style="box-shadow:0 4px 24px rgba(0,0,0,0.4);padding:0.9rem 1.8rem;font-size:0.78rem">Apply for License ↗</a>
+  <!-- License Fee Calculator -->
+  <div id="calc-panel">
+    <div class="calc-title">
+      <span>License Fee Estimator</span>
+      <button class="calc-close" onclick="toggleCalc()" aria-label="Close calculator">✕</button>
+    </div>
+    <div class="calc-field">
+      <label>Mineral Type</label>
+      <select id="calc-mineral" onchange="runCalc()">
+        <option value="">Select mineral…</option>
+        <option value="precious">Precious Metals (Gold, Silver)</option>
+        <option value="semi">Semi-Precious (Gemstones, Opal)</option>
+        <option value="metallic">Metallic Minerals (Tantalum, Iron)</option>
+        <option value="industrial">Industrial Minerals (Potash, Soda Ash)</option>
+        <option value="construction">Construction Materials</option>
+      </select>
+    </div>
+    <div class="calc-field">
+      <label>Area (km²)</label>
+      <input type="number" id="calc-area" placeholder="e.g. 200" min="1" max="1500" oninput="runCalc()">
+    </div>
+    <div class="calc-field">
+      <label>License Type</label>
+      <select id="calc-type" onchange="runCalc()">
+        <option value="">Select type…</option>
+        <option value="recon">Reconnaissance (1 yr)</option>
+        <option value="explore">Exploration (up to 7 yrs)</option>
+        <option value="small">Small-Scale Mining</option>
+        <option value="large">Large-Scale Mining</option>
+      </select>
+    </div>
+    <div class="calc-result" id="calc-result">
+      <div class="calc-result-row"><span class="calc-result-label">Annual Fee (ETB)</span><span class="calc-result-val" id="cr-etb">—</span></div>
+      <div class="calc-result-row"><span class="calc-result-label">Annual Fee (USD)</span><span class="calc-result-val" id="cr-usd">—</span></div>
+      <div class="calc-result-row"><span class="calc-result-label">Royalty Rate</span><span class="calc-result-val" id="cr-royalty">—</span></div>
+      <div class="calc-result-sub" id="cr-notes"></div>
+      <div class="calc-disclaimer">Indicative only · Based on MoMP fee schedule · Actual fees confirmed at application</div>
+    </div>
+  </div>
+  <div class="calc-trigger" onclick="toggleCalc()" role="button" tabindex="0" aria-label="Open license fee calculator">
+    <span class="calc-icon">⊞</span>
+    <span>Estimate your license fee →</span>
+  </div>
+  <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-primary" style="box-shadow:0 4px 24px rgba(0,0,0,0.4);padding:0.9rem 1.8rem;font-size:0.78rem">Start your exploration license ↗</a>
 </div>
 
 <!-- ══ JAVASCRIPT ══ -->
@@ -1846,6 +1933,58 @@ document.addEventListener('DOMContentLoaded',()=>{
       const group=document.getElementById(gid);
       if(group.classList.contains('error')) validateField(gid,iid,fn);
     });
+  });
+});
+
+// ── License fee calculator
+const feeTable = {
+  // [ETB per km² per year, royalty %, notes]
+  recon:   {precious:15,semi:15,metallic:15,industrial:15,construction:15,royalty:{precious:'7%',semi:'6%',metallic:'5%',industrial:'4%',construction:'3%'},fixed:15000,note:'Fixed annual fee regardless of area · Non-exclusive rights'},
+  explore: {precious:50,semi:50,metallic:50,industrial:50,construction:50,note:'Year 1–3: ETB 50/km². Year 4–5: ETB 75/km². Year 6–7: ETB 100/km²'},
+  small:   {precious:200,semi:200,metallic:150,industrial:100,construction:80,note:'Exclusive rights · Area limit 5 km²'},
+  large:   {precious:500,semi:500,metallic:400,industrial:300,construction:200,note:'Full production rights · EIA mandatory · Financial bond required'},
+};
+const royaltyRates = {precious:'7%',semi:'6%',metallic:'5%',industrial:'4%',construction:'3%'};
+const ETB_USD = 57;
+
+function toggleCalc(){
+  const panel = document.getElementById('calc-panel');
+  panel.classList.toggle('open');
+}
+function runCalc(){
+  const mineral = document.getElementById('calc-mineral').value;
+  const area = parseFloat(document.getElementById('calc-area').value)||0;
+  const type = document.getElementById('calc-type').value;
+  const result = document.getElementById('calc-result');
+  if(!mineral||!type||area<=0){result.classList.remove('show');return;}
+  const row = feeTable[type];
+  let etb;
+  if(type==='recon') etb = row.fixed;
+  else etb = (row[mineral]||100) * area;
+  const usd = Math.round(etb/ETB_USD);
+  document.getElementById('cr-etb').textContent = 'ETB '+etb.toLocaleString();
+  document.getElementById('cr-usd').textContent = 'USD '+usd.toLocaleString();
+  document.getElementById('cr-royalty').textContent = royaltyRates[mineral]||'—';
+  document.getElementById('cr-notes').textContent = row.note||'';
+  result.classList.add('show');
+}
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('calc-trigger')){e.preventDefault();toggleCalc();}
+});
+
+// ── Investor type → also highlight swimlane
+const origSetInvestorType = setInvestorType;
+// Extend swimlane highlighting when filter changes
+document.querySelectorAll('.filter-pill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    const type = pill.dataset.filter;
+    // color swimlane rows
+    const sl = document.querySelector('.swimlane');
+    if(!sl) return;
+    if(type==='exploration'){sl.style.borderColor='rgba(201,168,76,0.4)'}
+    else if(type==='small-scale'){sl.style.borderColor='rgba(74,155,106,0.4)'}
+    else if(type==='large-scale'){sl.style.borderColor='rgba(59,127,212,0.4)'}
+    else{sl.style.borderColor=''}
   });
 });
 </script>
