@@ -108,11 +108,11 @@ section{border-top:1px solid var(--border)}
 .ml-name{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-faint)}
 .hero-eyebrow{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
 .hero-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--gold)}
-#hero-content h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,5vw,5rem);line-height:1.05;margin-bottom:1.5rem}
+#hero-content h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,5vw,5rem);line-height:1.0;margin-bottom:32px}
 #hero-content h1 em{font-style:italic;color:var(--gold-light)}
 #hero-content .hero-sub{font-family:var(--font-sans);font-weight:300;font-size:1rem;color:var(--text-muted);max-width:460px;line-height:1.8;margin-bottom:2rem}
-.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2rem;margin:2.5rem 0}
-.stat-item{display:flex;flex-direction:column;border-left:2px solid var(--gold-dim);padding-left:1rem}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2rem;margin-bottom:48px}
+.stat-item{display:flex;flex-direction:column;border-left:2px solid var(--gold-dim);padding-left:32px;padding-right:32px}
 .stat-num{font-family:var(--font-mono);font-size:clamp(4.5rem,8vw,7.5rem);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:-0.03em}
 .stat-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-top:0.4rem}
 .stat-source{font-family:var(--font-mono);font-size:0.5rem;color:var(--text-faint);opacity:0.55;margin-top:0.15rem;letter-spacing:0.04em}
@@ -126,7 +126,7 @@ section{border-top:1px solid var(--border)}
 .hero-capture-inner input:focus{border-color:var(--gold)}
 .hero-capture-btn{padding:0.85rem 1.4rem;white-space:nowrap;font-size:0.75rem}
 .hero-capture-sub{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-faint);margin-top:0.6rem;letter-spacing:0.04em}
-.hero-manifesto{font-family:var(--font-serif);font-style:italic;font-size:0.9rem;color:var(--gold-light);border-left:2px solid var(--gold-dim);padding-left:1rem;margin-bottom:2rem;line-height:1.7;max-width:440px}
+.hero-manifesto{font-family:var(--font-serif);font-style:italic;font-size:0.9rem;color:var(--gold-light);border-left:2px solid var(--gold-dim);padding-left:1rem;margin-bottom:24px;line-height:1.7;max-width:440px}
 @media(max-width:768px){.hero-capture-inner{flex-direction:column}.hero-capture-inner input{border-right:1px solid var(--border-bright);border-bottom:none}.hero-capture-btn{width:100%}}
 
 /* ── MINERAL TICKER ── */
@@ -715,8 +715,8 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
     <div id="hero-left">
       <p class="hero-eyebrow">Verified Investment Data · Official Government Source</p>
       <h1>30 Minerals.<br>103 Million People.<br><em>One Destination.</em></h1>
-      <p class="hero-sub">In the last decade, Ethiopia overhauled its entire mining legal framework. The result: 100% foreign ownership, government-verified deposit data across 1.14 million km², and a single-window licensing process that completes in 15 working days.</p>
-      <p class="hero-manifesto">"For three millennia, Ethiopia's mountains have held the world's most untouched mineral wealth. We are opening the door."</p>
+      <p class="hero-manifesto">"For three millennia, Ethiopia's mountains have held the world's most untouched mineral wealth."</p>
+      <p style="font-size:14px;color:#8AAABB;font-family:var(--font-sans);font-weight:300;margin-bottom:48px;line-height:1.6">100% foreign ownership · 1.14M km² verified · License in 15 working days.</p>
       <div class="stats-row">
         <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Known Minerals</span><span class="stat-source">¹ GSE 2019</span></div>
         <div class="stat-item"><span class="stat-num">&gt;200</span><span class="stat-label">Gold Reserves (mt)</span><span class="stat-source">² MoMP Guide 2020</span></div>
@@ -731,9 +731,9 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
         <p class="hero-capture-sub">72-page MoMP guide + deposit data — delivered instantly. No spam.</p>
         <p id="hero-capture-success" style="display:none;font-family:var(--font-mono);font-size:0.7rem;color:var(--green);margin-top:0.6rem;letter-spacing:0.05em">Guide sent. Check your inbox.</p>
       </form>
-      <div class="cta-row" style="margin-top:1.2rem">
-        <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" class="btn-ghost" style="font-size:0.72rem">Apply for License →</a>
-        <a href="#why" class="btn-ghost" style="font-size:0.72rem">Explore the Case</a>
+      <div class="cta-row" style="margin-top:1.2rem;align-items:center">
+        <a href="https://ethiopian.portal.miningcadastre.com" target="_blank" rel="noopener" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:#E8E4D9;font-family:var(--font-sans);font-weight:400;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.65rem 1.5rem;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s">Apply for License →</a>
+        <a href="#why" style="font-size:13px;color:#8A8578;text-decoration:underline;text-underline-offset:3px;font-family:var(--font-sans);font-weight:300">Explore the Case</a>
       </div>
     </div>
 
