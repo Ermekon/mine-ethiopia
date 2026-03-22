@@ -116,8 +116,8 @@ section{border-top:1px solid var(--border)}
 .stat-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-top:0.4rem}
 .stat-source{font-family:var(--font-mono);font-size:0.5rem;color:var(--text-faint);opacity:0.55;margin-top:0.15rem;letter-spacing:0.04em}
 .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
-.hero-scarcity{font-family:var(--font-serif);font-size:1.05rem;color:var(--gold-light);margin-bottom:1.4rem;line-height:1.5}
-.proof-strip{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:2rem}
+.hero-scarcity{font-family:var(--font-serif);font-size:14px;color:#8A8578;margin-top:24px;margin-bottom:20px;line-height:1.5}
+.proof-strip{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:48px}
 .proof-item{display:flex;align-items:center;gap:0.55rem;font-family:var(--font-sans);font-weight:400;font-size:0.85rem;color:var(--text);line-height:1.4}
 .proof-item::before{content:'✔';color:var(--green);font-size:0.72rem;flex-shrink:0;margin-top:1px}
 .btn-cta-primary{background:var(--gold);color:var(--navy);font-family:var(--font-sans);font-weight:500;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.1em;padding:1rem 2.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,box-shadow 0.2s}
@@ -127,6 +127,21 @@ section{border-top:1px solid var(--border)}
 .cta-micro{font-family:var(--font-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-faint);margin-top:0.8rem}
 .dc-trust{padding:8px 20px 12px;border-top:1px solid rgba(255,255,255,0.05)}
 .dc-trust-line{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#4A5568;letter-spacing:0.06em;line-height:1.7}
+.deposit-row-list{display:flex;flex-direction:column;gap:2px;background:#1E2436;border-radius:8px;overflow:hidden;margin:10px 12px 12px}
+.drl-item{display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:10px;background:#0F1320;padding:10px 12px;cursor:pointer;transition:background 0.15s;border-left:2px solid transparent}
+.drl-item:hover{background:#141824}
+.drl-item.active{background:#141824;border-left-color:#C9A84C}
+.drl-badge{width:26px;height:26px;border-radius:4px;border:1px solid;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.drl-dot{width:7px;height:7px;border-radius:50%}
+.drl-left{display:flex;flex-direction:column;gap:1px}
+.drl-name{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:#E8E4D9}
+.drl-region{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#4A5568;text-transform:uppercase;letter-spacing:0.04em}
+.drl-right{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+.drl-royalty{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#C9A84C;line-height:1}
+.drl-status{font-family:'IBM Plex Mono',monospace;font-size:9px}
+.drl-status.open{color:#22C55E}
+.drl-status.dev{color:#F59E0B}
+.drl-status.exp{color:#60A5FA}
 
 /* ── HERO LEAD CAPTURE ── */
 .hero-capture{margin-top:2rem}
@@ -733,9 +748,8 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
     <!-- Left column -->
     <div id="hero-left">
       <p class="hero-eyebrow">New mining reforms active · Entry window open</p>
-      <h1>30 Minerals.<br>103 Million People.<br><em>One Investment Destination.</em></h1>
+      <h1>30 Minerals.<br>103 Million<br>People.<br><em>One Destination.</em></h1>
       <p class="hero-scarcity">One of Africa's least explored mineral markets.</p>
-      <p class="hero-sub">Verified mineral reserves, a fully digitized licensing system, and one of Africa's most competitive fiscal regimes — backed by the Ministry of Mines &amp; Petroleum.</p>
       <div class="proof-strip">
         <div class="proof-item">License approval in ~15 working days</div>
         <div class="proof-item">100% foreign ownership permitted</div>
@@ -763,21 +777,42 @@ footer{background:#060e18;padding:3rem 0 2rem;border-top:1px solid var(--border)
           <span class="dc-active">● ACTIVE</span>
         </div>
 
-        <!-- Tab row + legend -->
-        <div class="dc-tab-row">
-          <div class="dc-tabs">
-            <button class="active" data-dep="gold">GOLD</button>
-            <button data-dep="tantalum">TANTALUM</button>
-            <button data-dep="potash">POTASH</button>
-            <button data-dep="opal">OPAL</button>
-            <button data-dep="emerald">EMERALD</button>
+        <!-- Deposit row list -->
+        <div class="deposit-row-list">
+          <div class="drl-item active" data-dep="gold" onclick="selectHeroDeposit('gold',this)">
+            <div class="drl-badge" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3)"><div class="drl-dot" style="background:#C9A84C"></div></div>
+            <div class="drl-left"><span class="drl-name">Gold</span><span class="drl-region">Adola · Oromia</span></div>
+            <div class="drl-right"><span class="drl-royalty">7%</span><span class="drl-status open">● Open</span></div>
           </div>
-          <div class="dc-legend">
-            <div class="dc-legend-item" data-dep="gold"><div class="dc-legend-dot" style="background:#C9A84C"></div>Gold · Adola</div>
-            <div class="dc-legend-item" data-dep="tantalum"><div class="dc-legend-dot" style="background:#3B7FD4"></div>Tantalum · Kenticha</div>
-            <div class="dc-legend-item" data-dep="potash"><div class="dc-legend-dot" style="background:#E8861A"></div>Potash · Dallol</div>
-            <div class="dc-legend-item" data-dep="opal"><div class="dc-legend-dot" style="background:#38B8CC"></div>Opal · Wollo</div>
-            <div class="dc-legend-item" data-dep="emerald"><div class="dc-legend-dot" style="background:#20C050"></div>Emerald · Oromia</div>
+          <div class="drl-item" data-dep="tantalum" onclick="selectHeroDeposit('tantalum',this)">
+            <div class="drl-badge" style="background:rgba(59,127,212,0.1);border-color:rgba(59,127,212,0.3)"><div class="drl-dot" style="background:#3B7FD4"></div></div>
+            <div class="drl-left"><span class="drl-name">Tantalum</span><span class="drl-region">Kenticha · Sidama</span></div>
+            <div class="drl-right"><span class="drl-royalty">5%</span><span class="drl-status open">● Open</span></div>
+          </div>
+          <div class="drl-item" data-dep="potash" onclick="selectHeroDeposit('potash',this)">
+            <div class="drl-badge" style="background:rgba(232,134,26,0.1);border-color:rgba(232,134,26,0.3)"><div class="drl-dot" style="background:#E8861A"></div></div>
+            <div class="drl-left"><span class="drl-name">Potash</span><span class="drl-region">Dallol · Afar</span></div>
+            <div class="drl-right"><span class="drl-royalty">5%</span><span class="drl-status dev">● Development</span></div>
+          </div>
+          <div class="drl-item" data-dep="opal" onclick="selectHeroDeposit('opal',this)">
+            <div class="drl-badge" style="background:rgba(56,184,204,0.1);border-color:rgba(56,184,204,0.3)"><div class="drl-dot" style="background:#38B8CC"></div></div>
+            <div class="drl-left"><span class="drl-name">Opal</span><span class="drl-region">Wollo · Amhara</span></div>
+            <div class="drl-right"><span class="drl-royalty">7%</span><span class="drl-status open">● Open</span></div>
+          </div>
+          <div class="drl-item" data-dep="sapphire" onclick="selectHeroDeposit('sapphire',this)">
+            <div class="drl-badge" style="background:rgba(80,144,232,0.1);border-color:rgba(80,144,232,0.3)"><div class="drl-dot" style="background:#5090E8"></div></div>
+            <div class="drl-left"><span class="drl-name">Sapphire</span><span class="drl-region">Tigray Region</span></div>
+            <div class="drl-right"><span class="drl-royalty">7%</span><span class="drl-status open">● Open</span></div>
+          </div>
+          <div class="drl-item" data-dep="emerald" onclick="selectHeroDeposit('emerald',this)">
+            <div class="drl-badge" style="background:rgba(32,192,80,0.1);border-color:rgba(32,192,80,0.3)"><div class="drl-dot" style="background:#20C050"></div></div>
+            <div class="drl-left"><span class="drl-name">Emerald</span><span class="drl-region">Shakiso · Oromia</span></div>
+            <div class="drl-right"><span class="drl-royalty">7%</span><span class="drl-status open">● Open</span></div>
+          </div>
+          <div class="drl-item" data-dep="iron" onclick="selectHeroDeposit('iron',this)">
+            <div class="drl-badge" style="background:rgba(170,170,204,0.1);border-color:rgba(170,170,204,0.25)"><div class="drl-dot" style="background:#AAAACC"></div></div>
+            <div class="drl-left"><span class="drl-name">Iron / Platinum</span><span class="drl-region">Welega · Oromia</span></div>
+            <div class="drl-right"><span class="drl-royalty">6%</span><span class="drl-status exp">● Exploration</span></div>
           </div>
         </div>
 
@@ -2101,6 +2136,32 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 });
+
+// ── Hero deposit card row switcher
+const heroDepDB = {
+  gold:    {name:'Adola Gold Belt',     region:"OROMIA REGION · 05°53'N 39°06'E", label:'CONFIRMED RESERVE', v1:'>200 mt',  v2:'7%', v3:'15 yrs', v4:'Open',        desc:"Sub-Saharan Africa's most underexplored gold corridor — 90% of commercial depth untested."},
+  tantalum:{name:'Kenticha Tantalum',   region:"OROMIA REGION · 05°40'N 38°45'E", label:'GLOBAL RANK',       v1:'#6',       v2:'5%', v3:'15 yrs', v4:'Open',        desc:"World's 6th largest tantalum producer from a single site — strategic metal for capacitors."},
+  potash:  {name:'Dallol Potash Basin', region:"AFAR REGION · 14°14'N 40°18'E",   label:'DEPOSIT ESTIMATE',  v1:'3.2 Bt',   v2:'5%', v3:'20 yrs', v4:'Development', desc:'Among Africa\'s largest known potash deposits. Proximity to Djibouti Port (400 km).'},
+  opal:    {name:'Wollo Opal Fields',   region:"AMHARA REGION · 11°20'N 39°33'E", label:'TOP AUCTION PRICE', v1:'$15k/ct',  v2:'7%', v3:'10 yrs', v4:'Open',        desc:'Ethiopian opal commands $1,500–$15,000 per carat. Licensed artisanal exporters active.'},
+  sapphire:{name:'Tigray Sapphire Zone',region:"TIGRAY REGION · 13°30'N 38°20'E", label:'AVG. GEM PRICE',    v1:'$400/ct',  v2:'7%', v3:'10 yrs', v4:'Open',        desc:'GIA-certified sapphires from verified Tigray deposits, open for licensed gemstone export.'},
+  emerald: {name:'Shakiso Emerald Zone',region:"OROMIA REGION · 05°45'N 38°58'E", label:'MARKET PRICE',      v1:'$800/ct',  v2:'7%', v3:'10 yrs', v4:'Open',        desc:'Colombian-comparable gem grade. Shakiso corridor open — 35% lower royalty entry cost.'},
+  iron:    {name:'Welega Iron-PGM Belt',region:"OROMIA REGION · 09°00'N 35°30'E", label:'DEPOSIT SCALE',     v1:'Large',    v2:'6%', v3:'20 yrs', v4:'Exploration', desc:'Significant iron ore and platinum-group metal occurrences in the Western Ethiopian highlands.'},
+};
+function selectHeroDeposit(dep, el){
+  const d = heroDepDB[dep];
+  if(!d) return;
+  document.querySelectorAll('.drl-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('dc-name').textContent = d.name;
+  document.getElementById('dc-region').textContent = d.region;
+  document.getElementById('dc-label-1').textContent = d.label;
+  document.getElementById('dc-val-1').textContent = d.v1;
+  document.getElementById('dc-val-2').textContent = d.v2;
+  const v4 = document.getElementById('dc-val-4');
+  v4.textContent = d.v4;
+  v4.className = 'dc-stat-value' + (d.v4==='Open' ? ' open' : '');
+  document.getElementById('dc-desc').textContent = d.desc;
+}
 
 // ── Hero stats count-up (on load)
 (function(){
